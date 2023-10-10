@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	color: var(--dark-color);
+	font-family: 'Montserrat', sans-serif;
+}
+
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif; */
+.mainScreen {
+	display: flex;
+}
+
+:root {
+	--background-color1: #fafafa;
+	--background-color2: #888;
+	--background-color3: #222;
+	--dark-color: #333;
+	--medium-color: #aeaeae;
+	--light-color: #f0f0f0;
+	--color1: #ffd000;
+	--color1-light: #ffd727;
+	--color1-dark: #e6bc00;
+	--color2: red;
+	--border-radius1: 2px;
+	--border-radius2: 6px;
+	--border-radius3: 15px;
+	--font-size1: 12px;
+	--font-size2: 15px;
+	--form-max-width: 500px;
+	--form-min-width: 200px;
+	--input-height: 35px;
+	--button-max-width: 200px;
+	--button-min-width: 150px;
+	--background-padding1: 0 20px;
+	--background-padding2: 0 50px;
+}
+
+.defaultForm {
+	display: flex;
+	flex-direction: column;
+	max-width: var(--form-max-width);
+	width: 100%;
+	min-width: var(--form-min-width);
+	gap: 20px;
+}
+
+.defaultForm button {
+	max-width: var(--button-max-width);
+	width: 100%;
+	min-width: var(--button-min-width);
+	height: var(--input-height);
+	border-radius: var(--border-radius1);
+	background-color: var(--color1);
+	border: solid 1px var(--color1-dark);
+	cursor: pointer;
+	font-size: var(--font-size2);
+}
+
+.defaultForm label {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.defaultInput {
+	height: 35px;
+	width: 100%;
+	outline: none;
+	padding: 0 8px;
+	border: none;
+	border-bottom: solid 2px var(--medium-color);
+	font-size: var(--font-size2);
+	background-color: var(--light-color);
+	border-radius: var(--border-radius1);
+}
+
+.defaultInput:focus {
+	animation: blossomColor .8s;
+	animation-fill-mode: forwards;
+}
+
+.defaultInput:not(:focus) {
+	animation: reverseBlossomColor .8s;
+	animation-fill-mode: forwards;
+}
+
+
+@keyframes blossomColor {
+	0% {}
+
+	100% {
+		border-bottom: solid 2px var(--color1);
+	}
+}
+
+@keyframes reverseBlossomColor {
+	0% {
+		border-bottom: solid 2px var(--color1);
+	}
+
+	100% {}
+}
