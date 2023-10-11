@@ -1,12 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../public/styles/app.css'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Sidebar from './components/sidebar/Sidebar.jsx'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
 
 function App() {
+
+	useEffect(() => {
+		axios.create({
+			// eslint-disable-next-line no-undef
+			baseURL: 'http://localhost:3000/api/v1',
+			timeout: 1000,
+		});
+	}, [])
+
 	const [isAuth, setIsAuth] = useState(false)
 
 	return (
@@ -14,6 +26,7 @@ function App() {
 			{isAuth && <Sidebar />}
 
 			<BrowserRouter>
+				<ToastContainer autoClose={3000} />
 				<Routes>
 					<Route element={<Home />} path="/" />
 					<Route element={<Register />} path="/register" />

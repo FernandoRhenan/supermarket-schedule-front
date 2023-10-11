@@ -16,8 +16,6 @@ font-family: 'Roboto', sans-serif; */
 
 :root {
 	--background-color1: #fafafa;
-	--background-color2: #888;
-	--background-color3: #222;
 	--dark-color: #333;
 	--medium-color: #aeaeae;
 	--light-color: #f0f0f0;
@@ -72,7 +70,7 @@ font-family: 'Roboto', sans-serif; */
 	outline: none;
 	padding: 0 8px;
 	border: none;
-	border-bottom: solid 2px var(--medium-color);
+	border-bottom: solid 3px var(--medium-color);
 	font-size: var(--font-size2);
 	background-color: var(--light-color);
 	border-radius: var(--border-radius1);
@@ -93,13 +91,13 @@ font-family: 'Roboto', sans-serif; */
 	0% {}
 
 	100% {
-		border-bottom: solid 2px var(--color1);
+		border-bottom: solid 3px var(--color1);
 	}
 }
 
 @keyframes reverseBlossomColor {
 	0% {
-		border-bottom: solid 2px var(--color1);
+		border-bottom: solid 3px var(--color1);
 	}
 
 	100% {}
