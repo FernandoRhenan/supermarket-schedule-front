@@ -76,6 +76,10 @@ font-family: 'Roboto', sans-serif; */
 	border-radius: var(--border-radius1);
 }
 
+.defaultInput:disabled {
+	cursor: not-allowed;
+}
+
 .defaultInput:focus {
 	animation: blossomColor .8s;
 	animation-fill-mode: forwards;
