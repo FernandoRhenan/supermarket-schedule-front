@@ -76,9 +76,6 @@ font-family: 'Roboto', sans-serif; */
 	border-radius: var(--border-radius1);
 }
 
-.defaultInput:disabled {
-	cursor: not-allowed;
-}
 
 .defaultInput:focus {
 	animation: blossomColor .8s;
@@ -102,6 +99,37 @@ font-family: 'Roboto', sans-serif; */
 @keyframes reverseBlossomColor {
 	0% {
 		border-bottom: solid 3px var(--color1);
+	}
+
+	100% {}
+}
+
+
+.defaultInput:disabled {
+	cursor: not-allowed;
+}
+
+.defaultInput:disabled:active {
+	animation-fill-mode: forwards;
+	animation: blossomColorActive .8s;
+}
+
+.defaultInput:disabled:not(:active) {
+	animation-fill-mode: forwards;
+	animation: reverseBlossomColorActive .8s;
+}
+
+@keyframes blossomColorActive {
+	0% {}
+
+	100% {
+		border-bottom: solid 3px red;
+	}
+}
+
+@keyframes reverseBlossomColorActive {
+	0% {
+		border-bottom: solid 3px red;
 	}
 
 	100% {}

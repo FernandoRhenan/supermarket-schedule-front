@@ -2,9 +2,9 @@ import style from '../../public/styles/pages/register-login.module.css'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import cnpjFormater from '../utils/formaters/cnpjFormater.js'
+import phoneFormater from '../utils/formaters/phoneFormater.js'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import checkCnpj from '../utils/validators/checkCnpj'
 
 const Register = () => {
 
@@ -21,70 +21,40 @@ const Register = () => {
 	async function handleSubmitVerifyCnpj(e) {
 		e.preventDefault()
 
-		const { error, data, message, state } = checkCnpj(cnpj)
-		if (error) {
-			toast[state](message)
-		} else {
+		try {
+			// const response = await axios.get(`http://localhost:3000/api/v1/company/check-cnpj/${data}`)
 
-			try {
-				const response = await axios.get(`http://localhost:3000/api/v1/company/check-cnpj/${data}`)
+			// const { name, email, phone, cnpj } = response.data.data
 
-				const { name, email, phone, cnpj } = response.data.data
+			// setCnpj(cnpj)
+			// setCorporateName(name)
+			// setPhone(phone)
+			// setEmail(email)
+			setCnpj('00.216.844/0001-01')
+			setCorporateName('Testeeeee')
+			setPhone('(48) 98444-9444')
+			setEmail('teste@tesste.com')
 
-				setCnpj(cnpj)
-				setCorporateName(name)
-				setPhone(phone)
-				setEmail(email)
+			setSecondStep(true)
 
-				setSecondStep(true)
+		} catch (err) {
 
-			} catch (err) {
+			const { message, error } = err.response.data
 
-				const { message, error } = err.response.data
-
-				if (error) {
-					toast.error(message)
-				} else {
-					toast.error('Ocorreu um erro, por favor tente novamente mais tarde!')
-				}
+			if (error) {
+				toast.error(message)
+			} else {
+				toast.error('Ocorreu um erro, por favor tente novamente mais tarde!')
 			}
 		}
 	}
-	// async function handleSubmit(e) {
-	// 	e.preventDefault()
 
-	// 	const { error, data, message, state } = checkCnpj(cnpj)
-	// 	if (error) {
-	// 		toast[state](message)
-	// 	} else {
 
-	// 		try {
-	// 			const response = await axios.post('http://localhost:3000/api/v1/company/register')
 
-	// 			const { name, email, phone, cnpj } = response.data.data
+	async function handleSubmit(e) {
+		e.preventDefault()
 
-	// 			setCnpj(cnpj)
-	// 			setCorporateName(name)
-	// 			setPhone(phone)
-	// 			setEmail(email)
-
-	// 			setSecondStep(true)
-
-	// 		} catch (err) {
-
-	// 			const { message, error } = err.response.data
-
-	// 			if (error) {
-	// 				toast.error(message)
-	// 			} else {
-	// 				toast.error('Ocorreu um erro, por favor tente novamente mais tarde!')
-	// 			}
-
-	// 		}
-
-	// 	}
-
-	// }
+	}
 
 	return <div className={style.mainContainer} >
 		<div className={style.formContainer}>
@@ -94,7 +64,7 @@ const Register = () => {
 				<form className="defaultForm" onSubmit={handleSubmitVerifyCnpj}>
 					<label>
 						<span>Digite o CNPJ:</span>
-						<input value={cnpj} onChange={({ target }) => setCnpj(cnpjFormater(target.value))} type='text' maxLength='18' className='defaultInput' />
+						<input value={cnpj} onChange={({ target }) => setCnpj(cnpjFormater(target.value))} type='text' minLength='18' maxLength='18' required className='defaultInput' />
 					</label>
 					<button>Verificar</button>
 				</form>
@@ -102,10 +72,10 @@ const Register = () => {
 
 			{secondStep &&
 
-				<form className="defaultForm" >
+				<form className="defaultForm" onSubmit={handleSubmit} >
 					<label>
 						<span>CNPJ:</span>
-						<input value={cnpj} type='text' maxLength='18' disabled className='defaultInput' />
+						<input value={cnpj} type='text' disabled className='defaultInput' />
 					</label>
 					<label>
 						<span>Nome:</span>
@@ -113,27 +83,27 @@ const Register = () => {
 					</label>
 					<label>
 						<span>Nome fantasia:</span>
-						<input value={name} type='text' onChange={({ target }) => setName(target.value)} className='defaultInput' maxLength='26' />
+						<input value={name} type='text' onChange={({ target }) => setName(target.value)} className='defaultInput' minLength='2' maxLength='26' required />
 					</label>
 					<label>
 						<span>Email:</span>
-						<input value={email} type='text' onChange={({ target }) => setEmail(target.value)} className='defaultInput' maxLength='50' />
+						<input value={email} type='email' onChange={({ target }) => setEmail(target.value)} className='defaultInput' minLength='8' maxLength='50' required />
 					</label>
 					<label>
 						<span>Telefone:</span>
-						<input value={phone} type='text' onChange={({ target }) => setPhone(target.value)} className='defaultInput' />
+						<input value={phone} type='text' onChange={({ target }) => setPhone(phoneFormater(target.value))} className='defaultInput' minLength='14' maxLength='15' required />
 					</label>
 					<label>
 						<span>Telefone secundário:</span>
-						<input value={altPhone} type='text' onChange={({ target }) => setAltPhone(target.value)} className='defaultInput' />
+						<input value={altPhone} type='text' onChange={({ target }) => setAltPhone(phoneFormater(target.value))} className='defaultInput' minLength='14' maxLength='15' required />
 					</label>
 					<label>
 						<span>Senha:</span>
-						<input value={password} type='password' onChange={({ target }) => setPassword(target.value)} className='defaultInput' maxLength='32' />
+						<input value={password} type='password' onChange={({ target }) => setPassword(target.value)} className='defaultInput' minLength='6' maxLength='32' required />
 					</label>
 					<label>
 						<span>Confirmação da senha:</span>
-						<input value={confirmPassword} type='password' onChange={({ target }) => setConfirmPassword(target.value)} className='defaultInput' maxLength='32' />
+						<input value={confirmPassword} type='password' onChange={({ target }) => setConfirmPassword(target.value)} className='defaultInput' minLength='6' maxLength='32' required />
 					</label>
 					<button>Cadastrar</button>
 				</form>
