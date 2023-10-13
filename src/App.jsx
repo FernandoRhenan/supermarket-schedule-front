@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import '../public/styles/app.css'
 import { Routes, BrowserRouter, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
-import Sidebar from './components/sidebar/Sidebar.jsx'
+import Sidebar from './components/Sidebar.jsx'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
+import SendEmailValidation from './pages/SendEmailValidation'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
 					<Route element={<Home />} path="/" />
 					<Route element={<Register />} path="/register" />
 					<Route element={<Login />} path="/login" />
+					<Route element={<SendEmailValidation />} path="/send-email-validation/:email/:id" />
 				</Routes>
 			</BrowserRouter>
 		</div>
