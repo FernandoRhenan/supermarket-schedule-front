@@ -1,3 +1,4 @@
+@import url(./keyFrames.module.css);
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
 
 * {
@@ -46,7 +47,7 @@ font-family: 'Roboto', sans-serif; */
 	gap: 20px;
 }
 
-.defaultForm button {
+.defaultButton {
 	max-width: var(--button-max-width);
 	width: 100%;
 	min-width: var(--button-min-width);
@@ -78,31 +79,15 @@ font-family: 'Roboto', sans-serif; */
 
 
 .defaultInput:focus {
-	animation: blossomColor .8s;
+	animation: blossomBorderColor .8s;
 	animation-fill-mode: forwards;
 }
 
 .defaultInput:not(:focus) {
-	animation: reverseBlossomColor .8s;
+	animation: reverseBlossomBorderColor .8s;
 	animation-fill-mode: forwards;
 }
 
-
-@keyframes blossomColor {
-	0% {}
-
-	100% {
-		border-bottom: solid 3px var(--color1);
-	}
-}
-
-@keyframes reverseBlossomColor {
-	0% {
-		border-bottom: solid 3px var(--color1);
-	}
-
-	100% {}
-}
 
 
 .defaultInput:disabled {
@@ -111,26 +96,10 @@ font-family: 'Roboto', sans-serif; */
 
 .defaultInput:disabled:active {
 	animation-fill-mode: forwards;
-	animation: blossomColorActive .8s;
+	animation: blossomBorderColorActive .8s;
 }
 
 .defaultInput:disabled:not(:active) {
 	animation-fill-mode: forwards;
-	animation: reverseBlossomColorActive .8s;
-}
-
-@keyframes blossomColorActive {
-	0% {}
-
-	100% {
-		border-bottom: solid 3px red;
-	}
-}
-
-@keyframes reverseBlossomColorActive {
-	0% {
-		border-bottom: solid 3px red;
-	}
-
-	100% {}
+	animation: reverseBlossomBorderColorActive .8s;
 }

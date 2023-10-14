@@ -70,7 +70,6 @@ const Register = () => {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-		setLoading(true)
 
 		const cleanCnpj = cleanStr({ data: cnpj, only: 'numbers' })
 		const cleanPhone = cleanStr({ data: phone, only: 'numbers' })
@@ -83,7 +82,7 @@ const Register = () => {
 		if (error2) return toast[state2](message2)
 
 		try {
-
+			setLoading(true)
 			const { data: { data, error, state } } = await axios.post('http://localhost:3000/api/v1/company/register', {
 				cnpj: cleanCnpj,
 				name,
@@ -98,8 +97,7 @@ const Register = () => {
 				toast[state](message)
 			}
 
-			navigate(`/send-email-validation/${data.email}/${data.id}`)
-
+			navigate(`/send-email-validation?token=${data}`)
 
 		} catch (err) {
 			const { message, error } = err.response.data
@@ -127,7 +125,7 @@ const Register = () => {
 						<span>Digite o CNPJ:</span>
 						<input value={cnpj} onChange={({ target }) => setCnpj(cnpjFormater(target.value))} type='text' maxLength='18' className='defaultInput' />
 					</label>
-					<button>Verificar</button>
+					<button className='defaultButton'>Verificar</button>
 				</form>
 			}
 			{secondStep &&
@@ -165,7 +163,7 @@ const Register = () => {
 						<span>Confirmação da senha:</span>
 						<input value={confirmPassword} type='password' onChange={({ target }) => setConfirmPassword(target.value)} className='defaultInput' maxLength='32' />
 					</label>
-					<button>Cadastrar</button>
+					<button className='defaultButton'>Cadastrar</button>
 				</form>
 			}
 

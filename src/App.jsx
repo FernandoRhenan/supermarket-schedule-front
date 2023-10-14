@@ -32,7 +32,7 @@ function App() {
 					<Route element={<Home />} path="/" />
 					<Route element={<Register />} path="/register" />
 					<Route element={<Login />} path="/login" />
-					<Route element={<SendEmailValidation />} path="/send-email-validation/:email/:id" />
+					<Route element={<SendEmailValidation />} path="/send-email-validation" />
 				</Routes>
 			</BrowserRouter>
 		</div>

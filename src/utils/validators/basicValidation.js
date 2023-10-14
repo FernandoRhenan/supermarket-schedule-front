@@ -116,4 +116,4 @@ function validateAltPhone(altPhone) {
 	}
 }
 
-export { validateAll, validateCnpj }
+export { validateAll, validateCnpj, validateEmail }

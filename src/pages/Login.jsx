@@ -14,7 +14,7 @@ const Login = () => {
 					<span>Digite a senha:</span>
 					<input name="password" type="password" maxLength='32' className="defaultInput" />
 				</label>
-				<button>Entrar</button>
+				<button className='defaultButton'>Entrar</button>
 			</form>
 
 			<div className={style.link}>
