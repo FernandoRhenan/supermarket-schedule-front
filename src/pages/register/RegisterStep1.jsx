@@ -1,8 +1,9 @@
 import { cleanStr } from '../../utils/formaters'
-import { validateCnpj } from '../../utils/validators/basicValidation'
+import { validateAll } from '../../utils/validators/basicValidation'
 import { cnpjFormater } from '../../utils/formaters.js'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import defaultCatchError from '../../utils/returnTypes/defaultCatchError'
 
 
 // eslint-disable-next-line react/prop-types
@@ -12,7 +13,7 @@ const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, se
 		e.preventDefault()
 
 		const cleanCnpj = cleanStr({ data: cnpj, only: 'numbers' })
-		const { error, message, state } = validateCnpj(cleanCnpj)
+		const { error, message, state } = validateAll({ cnpj: cleanCnpj })
 		if (error) {
 			return toast[state](message)
 		}
@@ -30,15 +31,12 @@ const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, se
 
 			setSecondStep(true)
 
-		} catch (err) {
+		} catch (error) {
 
-			const { message, error } = err.response.data
+			const { message, state } = defaultCatchError(error)
 
-			if (error) {
-				toast.error(message)
-			} else {
-				toast.error('Ocorreu um erro, por favor tente novamente mais tarde!')
-			}
+			toast[state](message)
+
 		} finally {
 			setLoading(false)
 		}
@@ -48,7 +46,7 @@ const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, se
 		<>
 			<form className="defaultForm" onSubmit={handleSubmit}>
 				<label>
-					<span>Digite o CNPJ:</span>
+					<span>CNPJ:</span>
 					<input value={cnpj} onChange={({ target }) => setCnpj(cnpjFormater(target.value))} type='text' maxLength='18' className='defaultInput' />
 				</label>
 				<button className='defaultButton'>Verificar</button>

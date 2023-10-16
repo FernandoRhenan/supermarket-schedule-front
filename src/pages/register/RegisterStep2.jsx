@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import defaultCatchError from '../../utils/returnTypes/defaultCatchError'
 
 
 // eslint-disable-next-line react/prop-types
@@ -33,7 +34,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 		try {
 
 			setLoading(true)
-			const { data: { data, error, state } } = await axios.post('http://localhost:3000/api/v1/company/register', {
+			const { data: { data } } = await axios.post('http://localhost:3000/api/v1/company/register', {
 				cnpj: cleanCnpj,
 				name,
 				corporateName,
@@ -43,26 +44,19 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				email
 			})
 
-			if (error) {
-				toast[state](message)
-			}
-
 			navigate(`/send-email-validation?token=${data}`)
 
-		} catch (err) {
-			const { message, error } = err.response.data
+		} catch (error) {
 
-			if (error) {
-				toast.error(message)
-			} else {
-				toast.error('Ocorreu um erro, por favor tente novamente mais tarde!')
-			}
+			const { message, state } = defaultCatchError(error)
+
+			toast[state](message)
+
 		} finally {
 			setLoading(false)
 		}
-
-
 	}
+
 
 	return (
 		<form className="defaultForm" onSubmit={handleSubmit} >
