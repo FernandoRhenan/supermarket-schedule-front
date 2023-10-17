@@ -1,3 +1,116 @@
-.div {
+.mainContainer {
+	background-color: var(--color1-light);
+	min-width: 300px;
+	max-width: 300px;
+	height: calc(100vh - var(--header-height));
+	/* overflow: hidden; */
+	transition: all 0.5s ease-in;
+}
+
+
+.navList {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	justify-content: center;
+	list-style: none;
+	padding: 25px;
+}
+
+.active {
+	padding: 10px;
+	background-color: var(--color1-dark);
+	border-radius: var(--border-radius2);
+	width: 100%;
+	display: block;
+	transition: 250ms;
+	border-right: solid 20px var(--color1-dark);
+	text-decoration: none;
+}
+
+.active:hover {
+	background-color: var(--color1-dark);
+	animation: unflood 200ms linear forwards;
+}
+
+.active:not(:hover) {
+	background-color: var(--color1-dark);
+	animation: flood 200ms linear forwards;
+}
+
+.desactive {
+	padding: 10px;
 	background-color: var(--color1);
+	border-radius: var(--border-radius2);
+	width: 100%;
+	display: block;
+	transition: 250ms;
+	text-decoration: none;
+	border-right: solid 20px var(--color1-dark);
+}
+
+.desactive:hover {
+	background-color: var(--color1-dark);
+	animation: flood 200ms linear;
+}
+
+.desactive:not(:hover) {
+	animation: unflood 200ms linear;
+}
+
+
+@keyframes flood {
+	0% {
+		background-image: linear-gradient(to left, var(--color1), var(--color1), var(--color1), var(--color1), var(--color1));
+	}
+
+	20% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1), var(--color1), var(--color1), var(--color1));
+	}
+
+	40% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1), var(--color1), var(--color1));
+	}
+
+	60% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1), var(--color1));
+	}
+
+	80% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1));
+	}
+
+	100% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1-dark));
+	}
+
+}
+
+@keyframes unflood {
+	0% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1-dark));
+	}
+
+	20% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1));
+	}
+
+	40% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1-dark), var(--color1), var(--color1));
+	}
+
+	60% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1-dark), var(--color1), var(--color1), var(--color1));
+	}
+
+	80% {
+		background-image: linear-gradient(to left, var(--color1-dark), var(--color1), var(--color1), var(--color1), var(--color1));
+	}
+
+	100% {
+		background-image: linear-gradient(to left, var(--color1), var(--color1), var(--color1), var(--color1), var(--color1));
+	}
+
 }

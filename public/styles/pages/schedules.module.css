@@ -1,0 +1,24 @@
+.mainContainer {
+	width: 100%;
+	background-color: var(--background-color1);
+	padding: 15px;
+}
+
+.scheduleContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.scheduleContainer ul {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+	gap: 10px;
+}
+
+.scheduleContainer ul li {
+	height: 200px;
+	background-color: var(--light-color);
+	box-shadow: 0 0 8px var(--medium-color);
+	border-radius: var(--border-radius1);
+}

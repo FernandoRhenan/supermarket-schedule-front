@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import { AuthContext } from './context/AuthContext'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from './pages/Login'
 import EmailValidation from './pages/EmailValidation'
 import Schedules from './pages/Schedules'
@@ -13,6 +13,7 @@ import SendEmailValidation from './pages/SendEmailValidation'
 import Register from './pages/register/Register'
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import Headerbar from './components/Headerbar';
 
 function App() {
 
@@ -27,21 +28,24 @@ function App() {
 	}, [])
 
 	return (
-		<div className="mainScreen">
-			{auth && <Sidebar />}
-			<ToastContainer autoClose={3000} />
+		<div className="topScreen">
 			<BrowserRouter>
-				<Routes>
-					<Route path="/login" element={< PublicRoute auth={auth} > < Login />	</PublicRoute >} />
-					<Route path="/send-email-validation" element={< PublicRoute auth={auth} > < SendEmailValidation />	</PublicRoute >} />
-					<Route path="/email-validation" element={< PublicRoute auth={auth} > < EmailValidation />	</PublicRoute >} />
-					<Route path="/register" element={< PublicRoute auth={auth} > < Register />	</PublicRoute >} />
-					<Route path="/schedules" element={< PrivateRoute auth={auth} > < Schedules />	</PrivateRoute >} />
-				</Routes>
+				{auth && <Headerbar />}
+				<div className="mainScreen">
+					{auth && <Sidebar />}
+					<ToastContainer autoClose={3000} />
+
+					<Routes>
+						<Route path="/login" element={< PublicRoute auth={auth} > < Login />	</PublicRoute >} />
+						<Route path="/send-email-validation" element={< PublicRoute auth={auth} > < SendEmailValidation />	</PublicRoute >} />
+						<Route path="/email-validation" element={< PublicRoute auth={auth} > < EmailValidation />	</PublicRoute >} />
+						<Route path="/register" element={< PublicRoute auth={auth} > < Register />	</PublicRoute >} />
+						<Route path="/schedules" element={< PrivateRoute auth={auth} > < Schedules />	</PrivateRoute >} />
+					</Routes>
+				</div>
 			</BrowserRouter>
-
-
 		</div>
+
 	)
 }
 

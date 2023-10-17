@@ -11,12 +11,18 @@
 
 /* font-family: 'Montserrat', sans-serif;
 font-family: 'Roboto', sans-serif; */
+.topScreen {
+	display: flex;
+	flex-direction: column;
+}
+
 .mainScreen {
 	display: flex;
 }
 
 :root {
-	--background-color1: #fafafa;
+	--header-height: 70px;
+	--background-color1: #ebebeb;
 	--dark-color: #333;
 	--medium-color: #aeaeae;
 	--light-color: #f0f0f0;
