@@ -40,5 +40,25 @@ function cleanStr({ data, only }) {
 	} else return
 }
 
+function ISODateToTime(date) {
+	const time = new Date(date)
+	return `${time.getHours()}:${time.getMinutes()}`
+}
 
-export { cleanStr, cnpjFormater, phoneFormater }
+function ISODateToDay(date) {
+	const day = new Date(date)
+
+	const days = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado']
+
+	return days[day.getDay()]
+}
+
+function ISODateToDate(date) {
+
+	const newDate = new Date(date)
+
+	return `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`
+
+}
+
+export { cleanStr, cnpjFormater, phoneFormater, ISODateToTime, ISODateToDay, ISODateToDate }

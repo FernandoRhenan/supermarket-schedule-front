@@ -16,9 +16,60 @@
 	gap: 10px;
 }
 
-.scheduleContainer ul li {
-	height: 200px;
+.scheduleBox {
+	border: solid 1px var(--medium-color);
 	background-color: var(--light-color);
-	box-shadow: 0 0 8px var(--medium-color);
+	height: 200px;
+	max-height: 200px;
+	box-shadow: 0 0 10px #d6d6d6;
 	border-radius: var(--border-radius1);
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.scheduleBoxSelected {
+	border: dashed;
+	border: dotted 1px var(--medium-color);
+	background-color: var(--selected-color);
+	height: 200px;
+	max-height: 200px;
+	box-shadow: 0 0 10px #d6d6d6;
+	border-radius: var(--border-radius1);
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+
+.scheduleBoxData {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	gap: 15px;
+}
+
+.scheduleBoxData div {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	font-size: 1.2rem;
+	padding-bottom: 12px;
+	border-bottom: solid 1px var(--medium-color);
+}
+
+.scheduleBoxInterface {
+	display: flex;
+	justify-content: end;
+	align-items: end;
+}
+
+.icon {
+	cursor: pointer;
+}
+
+.dayLine::first-letter {
+	text-transform: uppercase;
 }
