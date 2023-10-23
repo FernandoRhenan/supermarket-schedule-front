@@ -14,6 +14,7 @@ import Register from './pages/register/Register'
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Headerbar from './components/Headerbar';
+import NewSchedule from './pages/NewSchedule';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
 						<Route path="/email-validation" element={< PublicRoute auth={auth} > < EmailValidation />	</PublicRoute >} />
 						<Route path="/register" element={< PublicRoute auth={auth} > < Register />	</PublicRoute >} />
 						<Route path="/schedules" element={< PrivateRoute auth={auth} > < Schedules />	</PrivateRoute >} />
+						<Route path="/new-schedule" element={< PrivateRoute auth={auth} > < NewSchedule />	</PrivateRoute >} />
 					</Routes>
 				</div>
 			</BrowserRouter>

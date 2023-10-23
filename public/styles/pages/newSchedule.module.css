@@ -1,0 +1,43 @@
+.mainContainer {
+	width: 100%;
+	background-color: var(--background-color1);
+	padding: 15px;
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+}
+
+.scheduleBox h2::first-letter {
+	text-transform: uppercase;
+}
+
+.scheduleBox table {
+	background-color: var(--semi-light-color);
+	margin: 10px 0;
+}
+
+.scheduleBox table tbody tr td {
+	background-color: var(--color1-light);
+	padding: 12px;
+	border-radius: var(--border-radius1);
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
+.scheduleBox table tbody tr td:hover {
+	background-color: var(--color1);
+}
+
+.scheduleBox table thead tr th {
+	min-width: 100px;
+	max-width: 150px;
+	padding: 10px 15px;
+}
+
+
+.containerHours {
+	background-color: var(--semi-light-color);
+	width: 100%;
+	border-radius: var(--border-radius1);
+	display: flex;
+}

@@ -21,6 +21,7 @@ html {
 	color: var(--font-color);
 }
 
+a,
 a:visited {
 	color: var(--font-color);
 }
@@ -43,10 +44,11 @@ font-family: 'Roboto', sans-serif; */
 	--dark-color: #333;
 	--medium-color: #aeaeae;
 	--light-color: #f7f7f7;
+	--semi-light-color: #e3e3e3;
 	--color1: #ffd000;
 	--color1-light: #ffd727;
 	--color1-dark: #e6bc00;
-	--color2: red;
+	--color2: #446257;
 	--danger-color: #db3b3b;
 	--danger-color-hover: #d10e0e;
 	--border-radius1: 2px;
