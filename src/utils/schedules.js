@@ -15,6 +15,7 @@ function scheduleFiller(minRange, maxRange) {
 
 	const date = new Date(minRange)
 	const datesArray = []
+	let id = 0
 
 	while (date < maxRange) {
 
@@ -22,8 +23,10 @@ function scheduleFiller(minRange, maxRange) {
 			date: date.getDate(),
 			month: date.getMonth(),
 			year: date.getFullYear(),
-			day: date.getDay()
+			day: date.getDay(),
+			id: id
 		}
+		id++
 
 		date.setDate(new Date(date).getDate() + 1)
 

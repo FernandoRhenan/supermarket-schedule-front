@@ -7,37 +7,28 @@
 	gap: 15px;
 }
 
-.scheduleBox h2::first-letter {
-	text-transform: uppercase;
+
+.scheduleBox {
+	display: flex;
+	flex-direction: column;
 }
 
-.scheduleBox table {
-	background-color: var(--semi-light-color);
-	margin: 10px 0;
+.yearAndMonth {
+	font-weight: bold;
+	font-size: 1.4rem;
+	margin: 20px auto;
 }
 
-.scheduleBox table tbody tr td {
-	background-color: var(--color1-light);
-	padding: 12px;
-	border-radius: var(--border-radius1);
-	font-size: 1.2rem;
-	cursor: pointer;
-}
-
-.scheduleBox table tbody tr td:hover {
+.dayBox {
 	background-color: var(--color1);
-}
-
-.scheduleBox table thead tr th {
-	min-width: 100px;
-	max-width: 150px;
-	padding: 10px 15px;
-}
-
-
-.containerHours {
-	background-color: var(--semi-light-color);
-	width: 100%;
+	padding: 20px;
 	border-radius: var(--border-radius1);
 	display: flex;
+	margin: 5px 0;
+	cursor: pointer;
+	transition: 200ms;
+}
+
+.dayBox:hover {
+	background-color: var(--color1-light);
 }

@@ -19,13 +19,17 @@ const NewSchedule = () => {
 
 	}, [])
 
+	function handleClick(id) {
+		console.log(id)
+	}
+
 
 	const Calendar = () => {
 		let currentMonth = null;
 		let currentYear = null;
 
 		return (
-			<div>
+			<>
 				{dates.map((item, index) => {
 
 					if (item.day != 0 && item.day != 6) {
@@ -36,26 +40,32 @@ const NewSchedule = () => {
 
 							// Renderiza o mês e o ano correspondentes
 							return (
-								<div key={index}>
-									<h2>{getMonthName(item.month)}</h2>
-									<h3>{item.year}</h3>
-									<p>{item.date}</p>
-									<p>{getDayName(item.day)}</p>
+								<div className={style.scheduleBox} key={index}>
+									<div className={style.yearAndMonth}>
+										<span>{getMonthName(item.month) + ', '}</span>
+										<span>{item.year}</span>
+									</div>
+									<div className={style.dayBox} onClick={() => handleClick(item.id)}>
+										<span><b>{'Dia ' + item.date}</b></span>
+										<span>{', ' + getDayName(item.day)}</span>
+									</div>
 								</div>
 							);
 						} else {
 							// Renderiza apenas o dia
 							return (
-								<span key={index}>
-									<p >{item.date}</p>
-									<p >{getDayName(item.day)}</p>
-								</span>
+								<div className={style.scheduleBox} key={index}>
+									<div className={style.dayBox} onClick={() => handleClick(item.id)}>
+										<span><b>{'Dia ' + item.date}</b></span>
+										<span>{', ' + getDayName(item.day)}</span>
+									</div>
+								</div>
 							)
 						}
 					}
 
 				})}
-			</div>
+			</>
 		);
 	};
 
@@ -76,14 +86,14 @@ const NewSchedule = () => {
 			"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
 			"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 		];
-		return monthNames[month - 1];
+		return monthNames[month];
 	}
 
 	function getDayName(day) {
 		const dayNames = [
 			'domingo', "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"
 		];
-		return dayNames[day - 1];
+		return dayNames[day];
 	}
 };
 
