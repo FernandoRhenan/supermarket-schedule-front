@@ -2,10 +2,51 @@
 import { useEffect, useState } from 'react';
 import style from '../../public/styles/pages/newSchedule.module.css'
 import { scheduleFiller, scheduleRange } from '../utils/schedules.js'
+import axios from '../utils/axios.js'
+import ableHours from '../utils/ableHours';
+import { hourString } from '../utils/formaters';
+import { toast } from 'react-toastify';
+import defaultCatchError from '../utils/returnTypes/defaultCatchError';
+import Load from '../components/Load';
 
 const NewSchedule = () => {
 
 	const [dates, setDates] = useState([])
+	const [hours, setHours] = useState([])
+	const [day, setDay] = useState('')
+	const [loading, setLoading] = useState(false)
+
+	async function handleVerifyHour(id) {
+		try {
+			setLoading(true)
+			const { year, month, date, day } = dates.find((item) => item.id == id)
+			const newDate = new Date(year, month, date).toISOString()
+
+			setDay(`Dia ${date} de ${getMonthName(month)}, ${getDayName(day)}.`)
+
+			const response = await axios.get(`http://localhost:3000/api/v1/schedule/check-schedule/${newDate}`)
+
+			const busyDates = response.data.data.dates
+			let unable = []
+
+			for (let { date } of busyDates) {
+				const dataHora = new Date(date)
+				const hours = dataHora.getUTCHours();
+				const min = dataHora.getUTCMinutes();
+
+				unable.push(hourString(`${hours}:${min}`))
+			}
+			const newArray = ableHours.filter(item => !unable.includes(item));
+
+			setHours(newArray)
+		} catch (error) {
+			const { message, state } = defaultCatchError(error)
+
+			toast[state](message)
+		} finally {
+			setLoading(false)
+		}
+	}
 
 	useEffect(() => {
 
@@ -18,10 +59,6 @@ const NewSchedule = () => {
 		setDates(getDates())
 
 	}, [])
-
-	function handleClick(id) {
-		console.log(id)
-	}
 
 
 	const Calendar = () => {
@@ -45,7 +82,7 @@ const NewSchedule = () => {
 										<span>{getMonthName(item.month) + ', '}</span>
 										<span>{item.year}</span>
 									</div>
-									<div className={style.dayBox} onClick={() => handleClick(item.id)}>
+									<div className={style.dayBox} onClick={() => handleVerifyHour(item.id)}>
 										<span><b>{'Dia ' + item.date}</b></span>
 										<span>{', ' + getDayName(item.day)}</span>
 									</div>
@@ -55,7 +92,7 @@ const NewSchedule = () => {
 							// Renderiza apenas o dia
 							return (
 								<div className={style.scheduleBox} key={index}>
-									<div className={style.dayBox} onClick={() => handleClick(item.id)}>
+									<div className={style.dayBox} onClick={() => handleVerifyHour(item.id)}>
 										<span><b>{'Dia ' + item.date}</b></span>
 										<span>{', ' + getDayName(item.day)}</span>
 									</div>
@@ -69,14 +106,35 @@ const NewSchedule = () => {
 		);
 	};
 
-
-
 	return (
 		<div className={style.mainContainer}>
+			{loading && <Load />}
+
 			<div className={style.scheduleContainer}>
 				{Calendar()}
-
 			</div>
+			{day &&
+				<div className={style.hoursContainer}>
+					<span className={style.ableHoursTxt}>Horários disponíveis: {day}</span>
+
+					<ul className={style.ableHours}>
+						{
+							hours && hours.map((item, i) => (
+								<li key={i}>{item}</li>
+							))
+						}
+					</ul>
+					<form>
+						<select>
+							<option>Uma vez</option>
+							<option>Semanal</option>
+							<option>Quinzenal</option>
+							<option>A cada 28 dias</option>
+						</select>
+					</form>
+
+				</div>
+			}
 		</div>
 	);
 

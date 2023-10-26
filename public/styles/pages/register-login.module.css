@@ -17,7 +17,6 @@
 	padding: var(--background-padding2);
 	padding-bottom: 50px;
 	padding-top: 50px;
-
 }
 
 .formContainer::-webkit-scrollbar {
@@ -34,7 +33,6 @@
 	background-color: var(--medium-color);
 	border-radius: var(--border-radius1);
 }
-
 
 .imageContainer {
 	background-image: url(../../images/calendar_bg.png);

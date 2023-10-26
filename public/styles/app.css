@@ -7,7 +7,7 @@
 		'FILL' 0,
 		'wght' 400,
 		'GRAD' 0,
-		'opsz' 24
+		'opsz' 24;
 }
 
 * {
@@ -15,6 +15,21 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: 'Montserrat', sans-serif;
+}
+
+body::-webkit-scrollbar {
+	width: 10px;
+	/* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--light-color);
+	/* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: var(--medium-color);
+	border-radius: var(--border-radius1);
 }
 
 html {
@@ -69,8 +84,6 @@ font-family: 'Roboto', sans-serif; */
 
 	--background-padding1: 0 20px;
 	--background-padding2: 0 50px;
-
-
 }
 
 .defaultForm {
@@ -112,17 +125,15 @@ font-family: 'Roboto', sans-serif; */
 	border-radius: var(--border-radius1);
 }
 
-
 .defaultInput:focus {
-	animation: blossomBorderColor .8s;
+	animation: blossomBorderColor 0.8s;
 	animation-fill-mode: forwards;
 }
 
 .defaultInput:not(:focus) {
-	animation: reverseBlossomBorderColor .8s;
+	animation: reverseBlossomBorderColor 0.8s;
 	animation-fill-mode: forwards;
 }
-
 
 .defaultInput:disabled {
 	cursor: not-allowed;
@@ -130,14 +141,13 @@ font-family: 'Roboto', sans-serif; */
 
 .defaultInput:disabled:active {
 	animation-fill-mode: forwards;
-	animation: blossomBorderColorActive .8s;
+	animation: blossomBorderColorActive 0.8s;
 }
 
 .defaultInput:disabled:not(:active) {
 	animation-fill-mode: forwards;
-	animation: reverseBlossomBorderColorActive .8s;
+	animation: reverseBlossomBorderColorActive 0.8s;
 }
-
 
 .dangerButton {
 	max-width: var(--small-button-max-width);
@@ -157,7 +167,6 @@ font-family: 'Roboto', sans-serif; */
 .dangerButton:hover {
 	background-color: var(--danger-color-hover);
 }
-
 
 .defaultIcon {
 	display: flex;
