@@ -73,7 +73,7 @@
 }
 
 .ableHours li {
-	background-color: var(--color1);
+	background-color: var(--medium-color);
 	border-radius: var(--border-radius1);
 	padding: 10px;
 	cursor: pointer;
@@ -81,10 +81,27 @@
 }
 
 .ableHours li:hover {
-	background-color: var(--color1-light);
+	background-color: var(--color1);
 }
 
 .ableHoursTxt {
 	font-size: 18px;
 	font-weight: bold;
+}
+
+.selectedHour {
+	font-size: 1.1rem;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.selectedHour span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color1);
+	width: 60px;
+	height: 30px;
+	border-radius: var(--border-radius1);
 }

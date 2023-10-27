@@ -35,7 +35,7 @@ const Login = () => {
 
 			const {
 				data: { data },
-			} = await axios.post('http://localhost:3000/api/v1/company/login', {
+			} = await axios.post('/api/v1/company/login', {
 				cnpj: cleanCnpj,
 				password,
 			})

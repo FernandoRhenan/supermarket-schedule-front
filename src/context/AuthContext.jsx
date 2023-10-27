@@ -10,7 +10,6 @@ function AuthProvider({ children }) {
 	useEffect(() => {
 		if (typeof localStorage.getItem('@Authtoken') === 'string') {
 			const token = JSON.parse(localStorage.getItem('@Authtoken'))
-			console.log(token)
 			axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
 			setAuth(true)
 		} else {

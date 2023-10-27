@@ -10,8 +10,7 @@ function defaultCatchError(error) {
 		})
 	}
 	// eslint-disable-next-line no-case-declarations
-	const {message, error: err, state, statusCode, data} = error.response.data
-
+	const { message, error: err, state, statusCode, data } = error.response.data
 	if (err) {
 		return defaultHTTPReturn({
 			message,
