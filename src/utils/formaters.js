@@ -85,6 +85,21 @@ function hourString(hour) {
 
 }
 
+function getMonthName(month) {
+	const monthNames = [
+		"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+		"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+	];
+	return monthNames[month];
+}
+
+function getDayName(day) {
+	const dayNames = [
+		'domingo', "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"
+	];
+	return dayNames[day];
+}
+
 export {
 	cleanStr,
 	cnpjFormater,
@@ -92,5 +107,7 @@ export {
 	ISODateToTime,
 	ISODateToDay,
 	ISODateToDate,
-	hourString
+	hourString,
+	getMonthName,
+	getDayName
 }

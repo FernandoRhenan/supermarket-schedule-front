@@ -10,6 +10,7 @@ import defaultCatchError from '../utils/returnTypes/defaultCatchError';
 import Load from '../components/Load';
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
+import { getDayName, getMonthName } from '../utils/formaters';
 
 
 const NewSchedule = () => {
@@ -50,7 +51,6 @@ const NewSchedule = () => {
 
 				unable.push(hourString(`${hours}:${min}`))
 			}
-			console.log(unable)
 			const newArray = ableHours.filter(item => !unable.includes(item));
 
 			setHours(newArray)
@@ -195,21 +195,6 @@ const NewSchedule = () => {
 		</div >
 	);
 
-	// Função auxiliar para obter o nome do mês com base no número do mês
-	function getMonthName(month) {
-		const monthNames = [
-			"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-			"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-		];
-		return monthNames[month];
-	}
-
-	function getDayName(day) {
-		const dayNames = [
-			'domingo', "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"
-		];
-		return dayNames[day];
-	}
 };
 
 export default NewSchedule;

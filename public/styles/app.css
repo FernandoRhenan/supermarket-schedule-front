@@ -65,7 +65,9 @@ font-family: 'Roboto', sans-serif; */
 	--color1-dark: #e6bc00;
 	--color2: #446257;
 	--danger-color: #db3b3b;
+	--active-color: #06bb30;
 	--danger-color-hover: #d10e0e;
+	--active-color-hover: #35a900;
 	--border-radius1: 2px;
 	--border-radius2: 6px;
 	--border-radius3: 15px;
@@ -164,8 +166,29 @@ font-family: 'Roboto', sans-serif; */
 	transition: 250ms;
 }
 
+
+
 .dangerButton:hover {
 	background-color: var(--danger-color-hover);
+}
+
+.activeButton {
+	max-width: var(--small-button-max-width);
+	width: 100%;
+	min-width: var(--small-button-min-width);
+	height: var(--input-height);
+	border-radius: var(--border-radius1);
+	background-color: var(--active-color);
+	cursor: pointer;
+	font-size: var(--font-size2);
+	border: none;
+	color: var(--light-color);
+	font-weight: bold;
+	transition: 250ms;
+}
+
+.activeButton:hover {
+	background-color: var(--active-color-hover);
 }
 
 .defaultIcon {

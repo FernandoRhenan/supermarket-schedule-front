@@ -72,3 +72,50 @@
 .dayLine::first-letter {
 	text-transform: uppercase;
 }
+
+.anyScheduleContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.anyScheduleContainer span {
+	font-size: 1.1rem;
+	padding: 20px 0;
+}
+
+.linkNewSchedule {
+	max-width: var(--button-max-width);
+	width: 100%;
+	min-width: var(--button-min-width);
+	height: var(--input-height);
+	border-radius: var(--border-radius1);
+	background-color: var(--color1);
+	border: solid 1px var(--color1-dark);
+	cursor: pointer;
+	font-size: var(--font-size2);
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.activeSchedule {
+	background-color: var(--semi-light-color);
+	color: var(--active-color);
+	font-weight: bold;
+	padding: 5px;
+	border-radius: var(--border-radius1);
+
+}
+
+.canceledSchedule {
+	background-color: var(--semi-light-color);
+	color: var(--danger-color);
+	font-weight: bold;
+	padding: 5px;
+	border-radius: var(--border-radius1);
+
+}
