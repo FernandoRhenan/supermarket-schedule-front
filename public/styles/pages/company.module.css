@@ -1,0 +1,52 @@
+.mainContainer {
+	width: 100%;
+	background-color: var(--background-color1);
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.editContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+.editContainerBox {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+	margin: 15px auto;
+}
+
+.deleteContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.deleteContainer p {
+	background-color: var(--semi-light-color);
+	padding: 15px;
+	margin: auto;
+	border-radius: var(--border-radius1);
+}
+
+.deleteButton {
+	border-radius: var(--border-radius1);
+	background-color: var(--danger-color);
+	color: var(--light-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	padding: 20px;
+	margin: 50px auto;
+	cursor: pointer;
+	transition: 200ms;
+}
+
+.deleteButton:hover {
+	background-color: var(--danger-color-hover);
+}

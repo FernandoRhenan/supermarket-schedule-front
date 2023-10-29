@@ -1,11 +1,11 @@
-import {useEffect, useContext} from 'react'
+import { useEffect, useContext } from 'react'
 import '../public/styles/app.css'
 import Sidebar from './components/Sidebar.jsx'
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
-import {AuthContext} from './context/AuthContext'
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import { AuthContext } from './context/AuthContext'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import EmailValidation from './pages/EmailValidation'
 import Schedules from './pages/Schedules'
@@ -15,9 +15,10 @@ import PrivateRoute from './components/PrivateRoute'
 import PublicRoute from './components/PublicRoute'
 import Headerbar from './components/Headerbar'
 import NewSchedule from './pages/NewSchedule'
+import Company from './pages/Company'
 
 function App() {
-	const {auth} = useContext(AuthContext)
+	const { auth } = useContext(AuthContext)
 
 	useEffect(() => {
 		axios.create({
@@ -40,8 +41,7 @@ function App() {
 							path="/login"
 							element={
 								<PublicRoute auth={auth}>
-									{' '}
-									<Login />{' '}
+									<Login />
 								</PublicRoute>
 							}
 						/>
@@ -49,8 +49,7 @@ function App() {
 							path="/send-email-validation"
 							element={
 								<PublicRoute auth={auth}>
-									{' '}
-									<SendEmailValidation />{' '}
+									<SendEmailValidation />
 								</PublicRoute>
 							}
 						/>
@@ -58,8 +57,7 @@ function App() {
 							path="/email-validation"
 							element={
 								<PublicRoute auth={auth}>
-									{' '}
-									<EmailValidation />{' '}
+									<EmailValidation />
 								</PublicRoute>
 							}
 						/>
@@ -67,8 +65,7 @@ function App() {
 							path="/register"
 							element={
 								<PublicRoute auth={auth}>
-									{' '}
-									<Register />{' '}
+									<Register />
 								</PublicRoute>
 							}
 						/>
@@ -76,8 +73,7 @@ function App() {
 							path="/schedules"
 							element={
 								<PrivateRoute auth={auth}>
-									{' '}
-									<Schedules />{' '}
+									<Schedules />
 								</PrivateRoute>
 							}
 						/>
@@ -85,8 +81,15 @@ function App() {
 							path="/new-schedule"
 							element={
 								<PrivateRoute auth={auth}>
-									{' '}
-									<NewSchedule />{' '}
+									<NewSchedule />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/company"
+							element={
+								<PrivateRoute auth={auth}>
+									<Company />
 								</PrivateRoute>
 							}
 						/>

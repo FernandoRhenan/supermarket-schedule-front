@@ -62,8 +62,19 @@ function ISODateToDay(date) {
 function ISODateToDate(date) {
 	const newDate = new Date(date)
 
-	return `${newDate.getDate()}/${newDate.getMonth() + 1
-		}/${newDate.getFullYear()}`
+	let day = newDate.getDate().toString()
+	let month = (newDate.getMonth() + 1).toString()
+	let year = newDate.getFullYear().toString()
+
+	if (day.length === 1) {
+		day = `0${day}`
+	}
+
+	if (month.length === 1) {
+		month = `0${month}`
+	}
+
+	return `${day}/${month}/${year}`
 }
 
 function hourString(hour) {
@@ -100,6 +111,26 @@ function getDayName(day) {
 	return dayNames[day];
 }
 
+function getFrequencyName(frequency) {
+
+	switch (frequency) {
+		case 'once':
+			return 'Uma vez'
+
+		case 'weekly':
+			return 'Semanal'
+
+		case 'biweekly':
+			return 'Quinzenal'
+
+		case 'monthly':
+			return 'A cada 28 dias'
+
+		default: return 'Algo deu errado...'
+	}
+
+}
+
 export {
 	cleanStr,
 	cnpjFormater,
@@ -109,5 +140,6 @@ export {
 	ISODateToDate,
 	hourString,
 	getMonthName,
-	getDayName
+	getDayName,
+	getFrequencyName
 }

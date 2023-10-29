@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ISODateToTime, ISODateToDay, ISODateToDate, hourString } from '../utils/formaters'
+import { ISODateToTime, ISODateToDay, ISODateToDate, hourString, getFrequencyName } from '../utils/formaters'
 import style from '../../public/styles/pages/schedules.module.css'
 import axios from '../utils/axios.js'
 import { AuthContext } from '../context/AuthContext'
@@ -134,6 +134,7 @@ const Schedules = () => {
 										<span>{ISODateToDate(item.date)}</span>
 									</div>
 									<span>Horário: <b>{hourString(ISODateToTime(item.date))}</b></span>
+									<span>Frequência: <b>{getFrequencyName(item.frequency)}</b></span>
 									<span>
 										{item.isActive ?
 											<><span>Estado: </span><span className={style.activeSchedule}>Ativo</span></> :

@@ -29,9 +29,11 @@
 	transition: 250ms;
 	text-decoration: none;
 	border-right: solid 20px var(--dark-color);
+	box-shadow: 0 0 1px var(--dark-color);
 }
 
 .desactive {
+	box-shadow: 0 0 1px var(--dark-color);
 	padding: 10px;
 	border-right: solid 20px var(--dark-color);
 	background-color: var(--color1);

@@ -1,5 +1,5 @@
 import style from '../../public/styles/components/sidebar.module.css'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
 	return (
@@ -9,23 +9,32 @@ const Sidebar = () => {
 					<li>
 						<NavLink
 							to="/schedules"
-							className={({isActive}) =>
+							className={({ isActive }) =>
 								isActive ? style.active : style.desactive
 							}
 						>
-							{' '}
+
 							Meus agendamentos
 						</NavLink>
 					</li>
 					<li>
 						<NavLink
 							to="/new-schedule"
-							className={({isActive}) =>
+							className={({ isActive }) =>
 								isActive ? style.active : style.desactive
 							}
 						>
-							{' '}
 							Fazer agendamento
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to="/company"
+							className={({ isActive }) =>
+								isActive ? style.active : style.desactive
+							}
+						>
+							Empresa
 						</NavLink>
 					</li>
 				</ul>
