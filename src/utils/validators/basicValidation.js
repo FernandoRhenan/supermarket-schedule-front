@@ -1,8 +1,7 @@
 import defaultReturn from '../returnTypes/defaultReturn.js'
 
-function validateAll({password, name, email, cnpj, phone, altPhone}) {
-	const _password =
-		typeof password === 'string' ? validatePassword(password) : false
+function validateAll({ password = null, name = null, email = null, cnpj = null, phone = null, altPhone = null }) {
+	const _password = typeof password === 'string' ? validatePassword(password) : false
 	const _name = typeof name === 'string' ? validateName(name) : false
 	const _email = typeof email === 'string' ? validateEmail(email) : false
 	const _cnpj = typeof cnpj === 'string' ? validateCnpj(cnpj) : false
@@ -20,11 +19,11 @@ function validateAll({password, name, email, cnpj, phone, altPhone}) {
 	) {
 		const array = [_cnpj, _name, _email, _phone, _altPhone, _password]
 
-		const {message, error, state} = array.find((item) => item.error === true)
+		const { message, error, state } = array.find((item) => item.error === true)
 
-		return defaultReturn({message, error, state})
+		return defaultReturn({ message, error, state })
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -59,7 +58,7 @@ function validatePassword(password) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -91,7 +90,7 @@ function validateName(name) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -123,7 +122,7 @@ function validateEmail(email) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -148,7 +147,7 @@ function validateCnpj(cnpj) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -180,7 +179,7 @@ function validatePhone(phone) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -212,8 +211,8 @@ function validateAltPhone(altPhone) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
-export {validateAll}
+export { validateAll, validatePassword }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import style from '../../public/styles/pages/company.module.css'
 import { toast } from 'react-toastify'
 import defaultCatchError from '../utils/returnTypes/defaultCatchError'
@@ -6,11 +6,17 @@ import Load from '../components/Load'
 import { cleanStr, cnpjFormater, phoneFormater } from '../utils/formaters'
 import { FaExclamationTriangle } from 'react-icons/fa'
 import axios from '../utils/axios'
-import { validateAll } from '../utils/validators/basicValidation'
-import { compareTwoValues } from '../utils/validators/compareData'
+import { validateAll, validatePassword } from '../utils/validators/basicValidation'
+import { compareTwoStrict, compareTwoValues } from '../utils/validators/compareData'
+import Modal from '../components/Modal'
+import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Company = () => {
 
+	const { setAuth } = useContext(AuthContext)
+
+	const navigate = useNavigate()
 	const [name, setName] = useState('')
 	const [newName, setNewName] = useState('')
 	const [corporateName, setCorporateName] = useState('')
@@ -22,6 +28,12 @@ const Company = () => {
 	const [altPhone, setAltPhone] = useState('')
 	const [newAltPhone, setNewAltPhone] = useState('')
 	const [loading, setLoading] = useState(true)
+
+	const [currentPassword, setCurrentPassword] = useState('')
+	const [newPassword, setNewPassword] = useState('')
+	const [confirmNewPassword, setConfirmNewPassword] = useState('')
+
+	const [modal, setModal] = useState(false)
 
 	useEffect(() => {
 		setLoading(false)
@@ -70,22 +82,27 @@ const Company = () => {
 		const nameComparation = compareTwoValues({ value1: newName, value2: name })
 
 		if (!altPhoneComparation.error && !phoneComparation.error && !emailComparation.error && !nameComparation.error) {
-			toast.warning('Para atulizar você precisa modificar algum campo')
-		} else {
-			console.log('ok')
+			return toast.warning('Para atulizar você precisa modificar algum campo')
 		}
 
+		const { message, error, state } = validateAll({ altPhone: newCleanAltPhone, phone: newCleanPhone, email: newEmail, name: newName })
+		if (error) {
+			return toast[state](message)
+		}
 
 		try {
 
-			// const { error, message, state } = validateAll({
-			// 	cnpj: cleanCnpj,
-			// 	phone: cleanPhone,
-			// 	altPhone: cleanAltPhone,
-			// 	name,
-			// 	email,
-			// 	password,
-			// })
+			setLoading(true)
+
+			const data = await axios.patch('/api/v1/company/change-data-company', {
+				altPhone: newCleanAltPhone,
+				phone: newCleanPhone,
+				email,
+				name
+			})
+
+			toast[data.data.state](data.data.message)
+
 		} catch (error) {
 			const { message, state } = defaultCatchError(error)
 
@@ -95,9 +112,76 @@ const Company = () => {
 		}
 	}
 
+	async function handleEditPassword(e) {
+		e.preventDefault()
+
+		const passConfirmationArray = [validatePassword(currentPassword), validatePassword(newPassword), validatePassword(confirmNewPassword)]
+
+		const invalidPass = passConfirmationArray.filter((item) => {
+			return item.error === true
+		})
+
+		if (invalidPass.length > 0) {
+			return toast[invalidPass[0].state](invalidPass[0].message)
+		}
+
+		if (currentPassword === newPassword) {
+			return toast.warning('A sua nova senha não pode ser igual a senha atual')
+		}
+
+		const { error: error2, message: message2, state: state2, } = compareTwoStrict({ value1: newPassword, value2: confirmNewPassword, type: 'string', message: 'Confirmação de senha reprovada', })
+		if (error2) return toast[state2](message2)
+
+		try {
+
+			setLoading(true)
+			const data = await axios.patch('/api/v1/company/change-password', {
+				currentPassword,
+				newPassword
+			})
+
+			toast[data.data.state](data.data.message)
+
+			setNewPassword('')
+			setConfirmNewPassword('')
+			setCurrentPassword('')
+
+
+		} catch (error) {
+			const { message, state } = defaultCatchError(error)
+
+			toast[state](message)
+		} finally {
+			setLoading(false)
+		}
+
+
+	}
+
+	async function handleDeleteCompany() {
+
+		try {
+			await axios.delete('/api/v1/company/delete-company')
+
+			localStorage.clear()
+			setAuth(false)
+			navigate('/register')
+
+		} catch (error) {
+			const { message, state } = defaultCatchError(error)
+
+			toast[state](message)
+		} finally {
+			setLoading(false)
+			setModal(false)
+		}
+	}
+
+
 	return (
 		<div className={style.mainContainer}>
 			{loading && <Load />}
+			{modal && <Modal btn1={'Cancelar'} btn2={'Excluir'} text={'Você tem certeza que deseja excluir a conta?'} fn2={handleDeleteCompany} fn1={() => setModal(false)} />}
 			<div className={style.editContainer}>
 				<div className={style.editContainerBox}>
 					<h1>Edição dos dados:</h1>
@@ -164,13 +248,13 @@ const Company = () => {
 
 					<h1>Alteração de senha:</h1>
 
-					<form className="defaultForm" >
+					<form className="defaultForm" onSubmit={handleEditPassword} >
 						<label>
 							<span>Senha atual:</span>
 							<input
-								// value={altPhone}
+								value={currentPassword}
 								type="password"
-								// onChange={({ target }) => setAltPhone(phoneFormater(target.value))}
+								onChange={({ target }) => setCurrentPassword(target.value)}
 								className="defaultInput"
 								maxLength="32"
 							/>
@@ -178,9 +262,9 @@ const Company = () => {
 						<label>
 							<span>Nova senha:</span>
 							<input
-								// value={altPhone}
+								value={newPassword}
 								type="password"
-								// onChange={({ target }) => setAltPhone(phoneFormater(target.value))}
+								onChange={({ target }) => setNewPassword(target.value)}
 								className="defaultInput"
 								maxLength="32"
 							/>
@@ -188,9 +272,9 @@ const Company = () => {
 						<label>
 							<span>Confirmação da senha:</span>
 							<input
-								// value={altPhone}
+								value={confirmNewPassword}
 								type="password"
-								// onChange={({ target }) => setAltPhone(phoneFormater(target.value))}
+								onChange={({ target }) => setConfirmNewPassword(target.value)}
 								className="defaultInput"
 								maxLength="32"
 							/>
@@ -202,7 +286,7 @@ const Company = () => {
 			<div className={style.deleteContainer}>
 				<h1>Exclusão da conta:</h1>
 				<p><b>Nota:</b> A exclusão da conta é uma ação irreversível, caso exclua essa conta, todos os dados vinculados a ela serão juntamente excluídos.</p>
-				<h3 className={style.deleteButton}><FaExclamationTriangle fontSize='1.8rem' />Excluir minha conta</h3>
+				<h3 className={style.deleteButton} onClick={() => setModal(true)}><FaExclamationTriangle fontSize='1.8rem' />Excluir minha conta</h3>
 			</div>
 		</div>
 	)
