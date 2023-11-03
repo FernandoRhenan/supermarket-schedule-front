@@ -10,3 +10,8 @@
 	position: sticky;
 	top: 0;
 }
+
+.icon {
+	font-size: 28px;
+	cursor: pointer;
+}

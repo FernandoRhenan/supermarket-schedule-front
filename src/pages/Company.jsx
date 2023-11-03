@@ -148,7 +148,11 @@ const Company = () => {
 
 
 		} catch (error) {
-			const { message, state } = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
+			if (statusCode == 401) {
+				localStorage.clear();
+				setAuth(false);
+			}
 
 			toast[state](message)
 		} finally {
@@ -168,7 +172,11 @@ const Company = () => {
 			navigate('/register')
 
 		} catch (error) {
-			const { message, state } = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
+			if (statusCode == 401) {
+				localStorage.clear();
+				setAuth(false);
+			}
 
 			toast[state](message)
 		} finally {
