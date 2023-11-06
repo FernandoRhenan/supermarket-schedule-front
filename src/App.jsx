@@ -18,7 +18,7 @@ import NewSchedule from './pages/NewSchedule'
 import Company from './pages/Company'
 
 function App() {
-	const { auth } = useContext(AuthContext)
+	const { auth, isAdmin } = useContext(AuthContext)
 
 	useEffect(() => {
 		axios.create({

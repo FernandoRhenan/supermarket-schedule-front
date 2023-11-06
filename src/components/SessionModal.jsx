@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import style from '../../public/styles/components/sessionModal.module.css'
-import Logout from '../hooks/Logout'
+import Logout from './Logout'
 
 // eslint-disable-next-line react/prop-types
 const SessionModal = ({ fnModal }) => {
