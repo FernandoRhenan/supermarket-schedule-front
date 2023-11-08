@@ -1,17 +1,25 @@
-import { cleanStr } from '../../utils/formaters'
-import { validateAll } from '../../utils/validators/basicValidation'
-import { cnpjFormater } from '../../utils/formaters.js'
-import { toast } from 'react-toastify'
+import {cleanStr} from '../../utils/formaters'
+import {validateAll} from '../../utils/validators/basicValidation'
+import {cnpjFormater} from '../../utils/formaters.js'
+import {toast} from 'react-toastify'
 import axios from '../../utils/axios.js'
 import defaultCatchError from '../../utils/returnTypes/defaultCatchError'
 
 // eslint-disable-next-line react/prop-types
-const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, setSecondStep, setLoading }) => {
+const RegisterStep1 = ({
+	cnpj,
+	setCnpj,
+	setCorporateName,
+	setPhone,
+	setEmail,
+	setSecondStep,
+	setLoading,
+}) => {
 	async function handleSubmit(e) {
 		e.preventDefault()
 
-		const cleanCnpj = cleanStr({ data: cnpj, only: 'numbers' })
-		const { error, message, state } = validateAll({ cnpj: cleanCnpj })
+		const cleanCnpj = cleanStr({data: cnpj, only: 'numbers'})
+		const {error, message, state} = validateAll({cnpj: cleanCnpj})
 		if (error) {
 			return toast[state](message)
 		}
@@ -22,7 +30,7 @@ const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, se
 				`/api/v1/company/check-cnpj/${cleanCnpj}`,
 			)
 
-			const { name, email, phone, cnpj } = response.data.data
+			const {name, email, phone, cnpj} = response.data.data
 
 			setCnpj(cnpj)
 			setCorporateName(name)
@@ -31,7 +39,7 @@ const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, se
 
 			setSecondStep(true)
 		} catch (error) {
-			const { message, state } = defaultCatchError(error)
+			const {message, state} = defaultCatchError(error)
 
 			toast[state](message)
 		} finally {
@@ -46,7 +54,7 @@ const RegisterStep1 = ({ cnpj, setCnpj, setCorporateName, setPhone, setEmail, se
 					<span>CNPJ:</span>
 					<input
 						value={cnpj}
-						onChange={({ target }) => setCnpj(cnpjFormater(target.value))}
+						onChange={({target}) => setCnpj(cnpjFormater(target.value))}
 						type="text"
 						maxLength="18"
 						className="defaultInput"

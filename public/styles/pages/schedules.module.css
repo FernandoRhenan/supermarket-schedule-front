@@ -93,7 +93,6 @@
 	font-weight: bold;
 	padding: 5px;
 	border-radius: var(--border-radius1);
-
 }
 
 .canceledSchedule {
@@ -102,5 +101,4 @@
 	font-weight: bold;
 	padding: 5px;
 	border-radius: var(--border-radius1);
-
 }

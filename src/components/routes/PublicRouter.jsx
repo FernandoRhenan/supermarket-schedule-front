@@ -1,8 +1,7 @@
-import { Navigate } from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
-const PublicRouter = ({ auth, isAdmin, children }) => {
-
+const PublicRouter = ({auth, isAdmin, children}) => {
 	if (!auth) {
 		return children
 	}
@@ -12,7 +11,6 @@ const PublicRouter = ({ auth, isAdmin, children }) => {
 	if (auth && !isAdmin) {
 		return <Navigate to="/schedules" replace />
 	}
-
 }
 
 export default PublicRouter

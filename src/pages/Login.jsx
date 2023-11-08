@@ -1,16 +1,16 @@
-import { Link, useNavigate } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import style from '../../public/styles/pages/register-login.module.css'
-import { cleanStr, cnpjFormater } from '../utils/formaters'
-import { validateAll } from '../utils/validators/basicValidation'
-import { useContext, useState } from 'react'
-import { toast } from 'react-toastify'
+import {cleanStr, cnpjFormater} from '../utils/formaters'
+import {validateAll} from '../utils/validators/basicValidation'
+import {useContext, useState} from 'react'
+import {toast} from 'react-toastify'
 import axios from '../utils/axios.js'
 import Load from '../components/Load'
 import defaultCatchError from '../utils/returnTypes/defaultCatchError'
-import { AuthContext } from '../context/AuthContext'
+import {AuthContext} from '../context/AuthContext'
 
 const Login = () => {
-	const { setAuth } = useContext(AuthContext)
+	const {setAuth} = useContext(AuthContext)
 
 	const navigate = useNavigate()
 	const [cnpj, setCnpj] = useState('')
@@ -20,8 +20,8 @@ const Login = () => {
 	async function handleSubmit(e) {
 		e.preventDefault()
 
-		const cleanCnpj = cleanStr({ data: cnpj, only: 'numbers' })
-		const { error, message, state } = validateAll({
+		const cleanCnpj = cleanStr({data: cnpj, only: 'numbers'})
+		const {error, message, state} = validateAll({
 			cnpj: cleanCnpj,
 			password: password,
 		})
@@ -34,7 +34,7 @@ const Login = () => {
 			setLoading(true)
 
 			const {
-				data: { data },
+				data: {data},
 			} = await axios.post('/api/v1/company/login', {
 				cnpj: cleanCnpj,
 				password,
@@ -42,9 +42,8 @@ const Login = () => {
 
 			setAuth(true)
 			localStorage.setItem('@Authtoken', JSON.stringify(data.token))
-
 		} catch (error) {
-			const { message, state, statusCode, data } = defaultCatchError(error)
+			const {message, state, statusCode, data} = defaultCatchError(error)
 
 			if (statusCode === 403) {
 				navigate(`/send-email-validation?token=${data.token}`)
@@ -68,7 +67,7 @@ const Login = () => {
 						<span>CNPJ:</span>
 						<input
 							value={cnpj}
-							onChange={({ target }) => setCnpj(cnpjFormater(target.value))}
+							onChange={({target}) => setCnpj(cnpjFormater(target.value))}
 							type="text"
 							maxLength="18"
 							className="defaultInput"
@@ -79,7 +78,7 @@ const Login = () => {
 						<input
 							value={password}
 							type="password"
-							onChange={({ target }) => setPassword(target.value)}
+							onChange={({target}) => setPassword(target.value)}
 							className="defaultInput"
 							maxLength="32"
 						/>

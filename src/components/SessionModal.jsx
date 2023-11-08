@@ -1,13 +1,16 @@
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import style from '../../public/styles/components/sessionModal.module.css'
 import Logout from './Logout'
 
 // eslint-disable-next-line react/prop-types
-const SessionModal = ({ fnModal }) => {
-
+const SessionModal = ({fnModal}) => {
 	return (
 		<div className={style.mainContainer}>
-			<div onClick={fnModal}><Link style={{ textDecoration: 'none' }} to='/company'>Minha conta</Link></div>
+			<div onClick={fnModal}>
+				<Link style={{textDecoration: 'none'}} to="/company">
+					Minha conta
+				</Link>
+			</div>
 			<Logout onClick={fnModal} />
 		</div>
 	)

@@ -33,7 +33,6 @@
 	background-color: var(--color1-light);
 }
 
-
 .hoursContainer {
 	background-color: var(--semi-light-color);
 	padding: 15px;
@@ -63,7 +62,6 @@
 	background-color: var(--medium-color);
 	border-radius: var(--border-radius1);
 }
-
 
 .ableHours {
 	list-style: none;

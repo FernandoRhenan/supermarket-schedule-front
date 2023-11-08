@@ -1,8 +1,7 @@
-import { Navigate } from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
-const PrivateRouter = ({ auth, isAdmin, children }) => {
-
+const PrivateRouter = ({auth, isAdmin, children}) => {
 	if (auth && !isAdmin) {
 		return children
 	}

@@ -1,13 +1,13 @@
-import { useEffect, useContext } from 'react'
+import {useEffect, useContext} from 'react'
 import '../public/styles/app.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
-import { AuthContext } from './context/AuthContext'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {AuthContext} from './context/AuthContext'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Headerbar from './components/Headerbar'
 import Sidebar from './components/Sidebar'
-import { ToastContainer } from 'react-toastify'
+import {ToastContainer} from 'react-toastify'
 import PrivateRouter from './components/routes/PrivateRouter'
 import Schedules from './pages/Schedules'
 import NewSchedule from './pages/NewSchedule'
@@ -19,10 +19,10 @@ import EmailValidation from './pages/EmailValidation'
 import Register from './pages/register/Register'
 import AdminRouter from './components/routes/AdminRouter'
 import AdmSchedules from './pages/adm/AdmSchedules'
-
+import AdmCompanies from './pages/adm/AdmCompanies'
 
 function App() {
-	const { auth, isAdmin } = useContext(AuthContext)
+	const {auth, isAdmin} = useContext(AuthContext)
 	// const navite = useNavigate()
 
 	useEffect(() => {
@@ -31,20 +31,17 @@ function App() {
 			baseURL: 'http://localhost:3000/api/v1',
 			timeout: 1000,
 		})
-
 	}, [])
-
 
 	return (
 		<div className="topScreen">
 			<BrowserRouter>
-				{auth && < Headerbar />}
+				{auth && <Headerbar />}
 				<div className="mainScreen">
-					{auth && < Sidebar isAdmin={isAdmin} />}
+					{auth && <Sidebar isAdmin={isAdmin} />}
 					<ToastContainer autoClose={3000} />
 
 					<Routes>
-
 						<Route
 							path="/schedules"
 							element={
@@ -64,17 +61,16 @@ function App() {
 						<Route
 							path="/company"
 							element={
-								<PrivateRouter auth={auth} isAdmin={isAdmin}>
+								<AdminRouter auth={auth} isAdmin={isAdmin}>
 									<Company />
-								</PrivateRouter>
+								</AdminRouter>
 							}
 						/>
-
 
 						<Route
 							path="/login"
 							element={
-								<PublicRouter auth={auth} isAdmin={isAdmin} >
+								<PublicRouter auth={auth} isAdmin={isAdmin}>
 									<Login />
 								</PublicRouter>
 							}
@@ -99,8 +95,7 @@ function App() {
 							path="/register"
 							element={
 								<PublicRouter auth={auth} isAdmin={isAdmin}>
-									<Register
-									/>
+									<Register />
 								</PublicRouter>
 							}
 						/>
@@ -114,11 +109,18 @@ function App() {
 							}
 						/>
 
+						<Route
+							path="/adm/companies"
+							element={
+								<AdminRouter auth={auth} isAdmin={isAdmin}>
+									<AdmCompanies />
+								</AdminRouter>
+							}
+						/>
 					</Routes>
 				</div>
 			</BrowserRouter>
 		</div>
-
 	)
 }
 

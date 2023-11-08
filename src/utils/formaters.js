@@ -42,7 +42,7 @@ function cnpjFormater(cnpj) {
 	return formatedCnpj
 }
 
-function cleanStr({ data, only }) {
+function cleanStr({data, only}) {
 	if (only === 'letters') {
 		return data.replace(/[^a-zA-Z]/g, '')
 	} else if (only === 'numbers') {
@@ -105,26 +105,40 @@ function hourString(hour) {
 	}
 
 	return `${hours}:${min}`
-
 }
 
 function getMonthName(month) {
 	const monthNames = [
-		"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-		"Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-	];
-	return monthNames[month];
+		'Janeiro',
+		'Fevereiro',
+		'Março',
+		'Abril',
+		'Maio',
+		'Junho',
+		'Julho',
+		'Agosto',
+		'Setembro',
+		'Outubro',
+		'Novembro',
+		'Dezembro',
+	]
+	return monthNames[month]
 }
 
 function getDayName(day) {
 	const dayNames = [
-		'domingo', "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"
-	];
-	return dayNames[day];
+		'domingo',
+		'segunda-feira',
+		'terça-feira',
+		'quarta-feira',
+		'quinta-feira',
+		'sexta-feira',
+		'sábado',
+	]
+	return dayNames[day]
 }
 
 function getFrequencyName(frequency) {
-
 	switch (frequency) {
 		case 'once':
 			return 'Uma vez'
@@ -138,9 +152,9 @@ function getFrequencyName(frequency) {
 		case 'monthly':
 			return 'A cada 28 dias'
 
-		default: return 'Algo deu errado...'
+		default:
+			return 'Algo deu errado...'
 	}
-
 }
 
 export {
@@ -153,5 +167,5 @@ export {
 	hourString,
 	getMonthName,
 	getDayName,
-	getFrequencyName
+	getFrequencyName,
 }

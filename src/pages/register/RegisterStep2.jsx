@@ -1,14 +1,22 @@
-import { cleanStr, phoneFormater } from '../../utils/formaters'
-import { validateAll } from '../../utils/validators/basicValidation'
-import { compareTwoStrict } from '../../utils/validators/compareData'
-import { toast } from 'react-toastify'
+import {cleanStr, phoneFormater} from '../../utils/formaters'
+import {validateAll} from '../../utils/validators/basicValidation'
+import {compareTwoStrict} from '../../utils/validators/compareData'
+import {toast} from 'react-toastify'
 import axios from '../../utils/axios.js'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import defaultCatchError from '../../utils/returnTypes/defaultCatchError'
 
 // eslint-disable-next-line react/prop-types
-const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, setLoading }) => {
+const RegisterStep2 = ({
+	cnpj,
+	corporateName,
+	phone,
+	email,
+	setEmail,
+	setPhone,
+	setLoading,
+}) => {
 	const navigate = useNavigate()
 
 	const [name, setName] = useState('')
@@ -19,11 +27,11 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 	async function handleSubmit(e) {
 		e.preventDefault()
 
-		const cleanCnpj = cleanStr({ data: cnpj, only: 'numbers' })
-		const cleanPhone = cleanStr({ data: phone, only: 'numbers' })
-		const cleanAltPhone = cleanStr({ data: altPhone, only: 'numbers' })
+		const cleanCnpj = cleanStr({data: cnpj, only: 'numbers'})
+		const cleanPhone = cleanStr({data: phone, only: 'numbers'})
+		const cleanAltPhone = cleanStr({data: altPhone, only: 'numbers'})
 
-		const { error, message, state } = validateAll({
+		const {error, message, state} = validateAll({
 			cnpj: cleanCnpj,
 			phone: cleanPhone,
 			altPhone: cleanAltPhone,
@@ -47,7 +55,9 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 
 		try {
 			setLoading(true)
-			const { data: { data } } = await axios.post('/api/v1/company/register', {
+			const {
+				data: {data},
+			} = await axios.post('/api/v1/company/register', {
 				cnpj: cleanCnpj,
 				name,
 				corporateName,
@@ -59,7 +69,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 
 			navigate(`/send-email-validation?token=${data}`)
 		} catch (error) {
-			const { message, state } = defaultCatchError(error)
+			const {message, state} = defaultCatchError(error)
 
 			toast[state](message)
 		} finally {
@@ -87,7 +97,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				<input
 					value={name}
 					type="text"
-					onChange={({ target }) => setName(target.value)}
+					onChange={({target}) => setName(target.value)}
 					className="defaultInput"
 					maxLength="26"
 				/>
@@ -97,7 +107,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				<input
 					value={email}
 					type="text"
-					onChange={({ target }) => setEmail(target.value)}
+					onChange={({target}) => setEmail(target.value)}
 					className="defaultInput"
 					maxLength="50"
 				/>
@@ -107,7 +117,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				<input
 					value={phone}
 					type="text"
-					onChange={({ target }) => setPhone(phoneFormater(target.value))}
+					onChange={({target}) => setPhone(phoneFormater(target.value))}
 					className="defaultInput"
 					maxLength="15"
 				/>
@@ -117,7 +127,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				<input
 					value={altPhone}
 					type="text"
-					onChange={({ target }) => setAltPhone(phoneFormater(target.value))}
+					onChange={({target}) => setAltPhone(phoneFormater(target.value))}
 					className="defaultInput"
 					maxLength="15"
 				/>
@@ -127,7 +137,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				<input
 					value={password}
 					type="password"
-					onChange={({ target }) => setPassword(target.value)}
+					onChange={({target}) => setPassword(target.value)}
 					className="defaultInput"
 					maxLength="32"
 				/>
@@ -137,7 +147,7 @@ const RegisterStep2 = ({ cnpj, corporateName, phone, email, setEmail, setPhone, 
 				<input
 					value={confirmPassword}
 					type="password"
-					onChange={({ target }) => setConfirmPassword(target.value)}
+					onChange={({target}) => setConfirmPassword(target.value)}
 					className="defaultInput"
 					maxLength="32"
 				/>
