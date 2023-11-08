@@ -19,7 +19,7 @@ function AuthProvider({ children }) {
 			setAuth(false)
 			setIsAdmin(false)
 		}
-	}, [auth])
+	}, [auth, isAdmin])
 
 	return (
 		<AuthContext.Provider value={{ auth, setAuth, isAdmin }}>
