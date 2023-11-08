@@ -42,6 +42,7 @@ const Login = () => {
 
 			setAuth(true)
 			localStorage.setItem('@Authtoken', JSON.stringify(data.token))
+
 		} catch (error) {
 			const { message, state, statusCode, data } = defaultCatchError(error)
 

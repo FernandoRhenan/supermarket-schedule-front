@@ -19,22 +19,7 @@
 .scheduleBox {
 	border: solid 1px var(--medium-color);
 	background-color: var(--light-color);
-	height: 200px;
-	max-height: 200px;
-	box-shadow: 0 0 10px #d6d6d6;
-	border-radius: var(--border-radius1);
-	padding: 15px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.scheduleBoxSelected {
-	border: dashed;
-	border: dotted 1px var(--medium-color);
-	background-color: var(--selected-color);
-	height: 200px;
-	max-height: 200px;
+	min-height: 200px;
 	box-shadow: 0 0 10px #d6d6d6;
 	border-radius: var(--border-radius1);
 	padding: 15px;

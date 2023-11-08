@@ -38,6 +38,7 @@ const EmailValidation = () => {
 				if (!error && state === 'success') {
 					setAuth(true)
 					localStorage.setItem('@Authtoken', JSON.stringify(data.token))
+
 				} else {
 					setMessage(message)
 					setError(true)

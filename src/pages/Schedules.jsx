@@ -24,7 +24,7 @@ const Schedules = () => {
 
 				const schedulesArray = []
 				for (let item of data.data.data) {
-					schedulesArray.push({ ...item, selected: false })
+					schedulesArray.push(item)
 				}
 
 				setSchedules(schedulesArray)
@@ -122,9 +122,7 @@ const Schedules = () => {
 						{schedules.map((item) => (
 							<li
 								key={item.id}
-								className={
-									item.selected ? style.scheduleBoxSelected : style.scheduleBox
-								}
+								className={style.scheduleBox}
 							>
 								<div className={style.scheduleBoxData}>
 									<div>
