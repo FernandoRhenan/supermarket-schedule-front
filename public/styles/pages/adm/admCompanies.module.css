@@ -3,3 +3,59 @@
 	background-color: var(--background-color1);
 	padding: 15px;
 }
+
+.companiesContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.companiesContainer ul {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	gap: 10px;
+}
+
+.companyBox {
+	border: solid 1px var(--medium-color);
+	background-color: var(--light-color);
+	min-height: 200px;
+	box-shadow: 0 0 5px #d6d6d6;
+	border-radius: var(--border-radius1);
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.companyBoxData {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	gap: 15px;
+}
+
+.active {
+	background-color: var(--semi-light-color);
+	color: var(--active-color);
+	font-weight: bold;
+	padding: 5px;
+	border-radius: var(--border-radius1);
+}
+
+.desactive {
+	background-color: var(--semi-light-color);
+	color: var(--danger-color);
+	font-weight: bold;
+	padding: 5px;
+	border-radius: var(--border-radius1);
+}
+
+.countOfCompanies span {
+	background-color: var(--semi-light-color);
+	color: var(--dark-color);
+	font-weight: bold;
+	padding: 4px 10px;
+	border-radius: var(--border-radius1);
+}

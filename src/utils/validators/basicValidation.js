@@ -27,11 +27,11 @@ function validateAll({
 	) {
 		const array = [_cnpj, _name, _email, _phone, _altPhone, _password]
 
-		const {message, error, state} = array.find((item) => item.error === true)
+		const { message, error, state } = array.find((item) => item.error === true)
 
-		return defaultReturn({message, error, state})
+		return defaultReturn({ message, error, state })
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -66,7 +66,7 @@ function validatePassword(password) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -98,13 +98,12 @@ function validateName(name) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
 function validateEmail(email) {
-	const emailRegex =
-		/^[a-zA-Z0-9.-]{2,}@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/.test(email)
+	const emailRegex = /^[a-zA-Z0-9._-]{2,}@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,4}$/.test(email)
 	if (email.length === 0) {
 		return defaultReturn({
 			message: 'Preencha o campo E-mail',
@@ -130,7 +129,7 @@ function validateEmail(email) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -155,7 +154,7 @@ function validateCnpj(cnpj) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -187,7 +186,7 @@ function validatePhone(phone) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
@@ -219,8 +218,8 @@ function validateAltPhone(altPhone) {
 			state: 'warning',
 		})
 	} else {
-		return defaultReturn({message: '', error: false, state: 'success'})
+		return defaultReturn({ message: '', error: false, state: 'success' })
 	}
 }
 
-export {validateAll, validatePassword}
+export { validateAll, validatePassword }

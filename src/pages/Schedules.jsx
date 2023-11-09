@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
 	ISODateToTime,
 	ISODateToDay,
@@ -8,15 +8,15 @@ import {
 } from '../utils/formaters'
 import style from '../../public/styles/pages/schedules.module.css'
 import axios from '../utils/axios.js'
-import {AuthContext} from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import defaultCatchError from '../utils/returnTypes/defaultCatchError'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import Load from '../components/Load'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Schedules = () => {
 	const [schedules, setSchedules] = useState([])
-	const {setAuth} = useContext(AuthContext)
+	const { setAuth } = useContext(AuthContext)
 	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
@@ -33,7 +33,7 @@ const Schedules = () => {
 
 				setSchedules(schedulesArray)
 			} catch (error) {
-				const {message, state, statusCode} = defaultCatchError(error)
+				const { message, state, statusCode } = defaultCatchError(error)
 				if (statusCode == 401) {
 					localStorage.clear()
 					setAuth(false)
@@ -47,7 +47,7 @@ const Schedules = () => {
 		getCompanySchedule()
 	}, [setAuth])
 
-	async function handleCancel({target}) {
+	async function handleCancel({ target }) {
 		const id = parseInt(target.id)
 
 		try {
@@ -60,14 +60,14 @@ const Schedules = () => {
 			const canceledId = data.data.data.id
 			const updatedSchedules = schedules.map((item) => {
 				if (item.id === canceledId) {
-					return {...item, isActive: !item.isActive}
+					return { ...item, isActive: !item.isActive }
 				}
 				return item
 			})
 
 			setSchedules(updatedSchedules)
 		} catch (error) {
-			const {message, state, statusCode} = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
 			if (statusCode == 401) {
 				localStorage.clear()
 				setAuth(false)
@@ -79,7 +79,7 @@ const Schedules = () => {
 		}
 	}
 
-	async function handleActive({target}) {
+	async function handleActive({ target }) {
 		const id = parseInt(target.id)
 
 		try {
@@ -93,14 +93,14 @@ const Schedules = () => {
 
 			const updatedSchedules = schedules.map((item) => {
 				if (item.id === activedId) {
-					return {...item, isActive: !item.isActive}
+					return { ...item, isActive: !item.isActive }
 				}
 				return item
 			})
 
 			setSchedules(updatedSchedules)
 		} catch (error) {
-			const {message, state, statusCode} = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
 			if (statusCode == 401) {
 				localStorage.clear()
 				setAuth(false)

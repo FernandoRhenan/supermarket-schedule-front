@@ -20,7 +20,7 @@
 	border: solid 1px var(--medium-color);
 	background-color: var(--light-color);
 	min-height: 200px;
-	box-shadow: 0 0 10px #d6d6d6;
+	box-shadow: 0 0 5px #d6d6d6;
 	border-radius: var(--border-radius1);
 	padding: 15px;
 	display: flex;

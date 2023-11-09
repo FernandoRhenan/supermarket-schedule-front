@@ -1,0 +1,46 @@
+.mainContainer {
+	display: flex;
+	justify-content: center;
+	margin: 30px 0;
+}
+
+.paginationBox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	gap: 5px;
+}
+
+.chevronIcon {
+	padding: 3px;
+	font-size: 25px;
+	background-color: var(--semi-light-color);
+	border-radius: 50%;
+	transition: 250ms;
+	cursor: pointer;
+}
+
+.chevronIcon:hover {
+	background-color: var(--medium-color);
+}
+
+.chevronIconDisabled {
+	padding: 3px;
+	font-size: 25px;
+	background-color: var(--danger-color);
+	border-radius: 50%;
+	transition: 250ms;
+}
+
+.chevronIconDisabled:hover {
+	background-color: var(--danger-color-hover);
+}
+
+.pageNumber {
+	padding: 3px 16px;
+	margin: 0 10px;
+	font-weight: bold;
+	background-color: var(--medium-color);
+	border-radius: var(--border-radius3);
+}

@@ -1,13 +1,13 @@
 import style from '../../public/styles/pages/sendEmailValidation.module.css'
 import Load from '../components/Load'
 import axios from '../utils/axios.js'
-import {useNavigate} from 'react-router-dom'
-import {useContext, useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
 import defaultCatchError from '../utils/returnTypes/defaultCatchError'
-import {AuthContext} from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
 const EmailValidation = () => {
-	const {setAuth} = useContext(AuthContext)
+	const { setAuth } = useContext(AuthContext)
 
 	const navigate = useNavigate()
 	const [message, setMessage] = useState('')
@@ -27,13 +27,13 @@ const EmailValidation = () => {
 				const token = urlParams.get('token')
 
 				const response = await axios.patch(
-					'http://localhost:3000/api/v1/company/confirm-email',
+					'/api/v1/company/confirm-email',
 					{
 						token,
 					},
 				)
 
-				const {message, state, error, data} = response.data
+				const { message, state, error, data } = response.data
 
 				if (!error && state === 'success') {
 					setAuth(true)
@@ -43,7 +43,7 @@ const EmailValidation = () => {
 					setError(true)
 				}
 			} catch (error) {
-				const {message, error: err} = defaultCatchError(error)
+				const { message, error: err } = defaultCatchError(error)
 
 				setError(err)
 				setMessage(message)

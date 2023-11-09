@@ -42,7 +42,7 @@ function cnpjFormater(cnpj) {
 	return formatedCnpj
 }
 
-function cleanStr({data, only}) {
+function cleanStr({ data, only }) {
 	if (only === 'letters') {
 		return data.replace(/[^a-zA-Z]/g, '')
 	} else if (only === 'numbers') {
