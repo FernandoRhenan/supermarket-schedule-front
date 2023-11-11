@@ -69,7 +69,6 @@ const AdmCompanies = () => {
 
 		setPageSkip(restCompanies)
 		setCurrentPage(firstNum)
-
 	}
 
 	return (
@@ -99,7 +98,7 @@ const AdmCompanies = () => {
 				</ul>
 				<div>
 					{companies &&
-						<PaginationBox first={firstFn} prev={prevFn} next={nextFn} last={lastFn} take={take} countOfCompanies={countOfCompanies} currentPage={currentPage} />
+						<PaginationBox first={firstFn} prev={prevFn} next={nextFn} last={lastFn} take={take} count={countOfCompanies} currentPage={currentPage} />
 					}
 				</div>
 			</div>

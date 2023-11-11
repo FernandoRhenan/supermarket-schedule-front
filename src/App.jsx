@@ -1,13 +1,13 @@
-import {useEffect, useContext} from 'react'
+import { useEffect, useContext } from 'react'
 import '../public/styles/app.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
-import {AuthContext} from './context/AuthContext'
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import { AuthContext } from './context/AuthContext'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Headerbar from './components/Headerbar'
 import Sidebar from './components/Sidebar'
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import PrivateRouter from './components/routes/PrivateRouter'
 import Schedules from './pages/Schedules'
 import NewSchedule from './pages/NewSchedule'
@@ -22,7 +22,7 @@ import AdmSchedules from './pages/adm/AdmSchedules'
 import AdmCompanies from './pages/adm/AdmCompanies'
 
 function App() {
-	const {auth, isAdmin} = useContext(AuthContext)
+	const { auth, isAdmin } = useContext(AuthContext)
 	// const navite = useNavigate()
 
 	useEffect(() => {
@@ -61,9 +61,9 @@ function App() {
 						<Route
 							path="/company"
 							element={
-								<AdminRouter auth={auth} isAdmin={isAdmin}>
+								<PrivateRouter auth={auth} isAdmin={isAdmin}>
 									<Company />
-								</AdminRouter>
+								</PrivateRouter>
 							}
 						/>
 
@@ -114,6 +114,15 @@ function App() {
 							element={
 								<AdminRouter auth={auth} isAdmin={isAdmin}>
 									<AdmCompanies />
+								</AdminRouter>
+							}
+						/>
+
+						<Route
+							path="/adm/company"
+							element={
+								<AdminRouter auth={auth} isAdmin={isAdmin}>
+									<Company />
 								</AdminRouter>
 							}
 						/>
