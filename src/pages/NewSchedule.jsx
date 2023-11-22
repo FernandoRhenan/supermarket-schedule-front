@@ -1,20 +1,20 @@
 // import { useEffect, useState } from 'react';
-import {useContext, useEffect, useState} from 'react'
+import { useContext, useEffect, useState } from 'react'
 import style from '../../public/styles/pages/newSchedule.module.css'
-import {scheduleFiller, scheduleRange} from '../utils/schedules.js'
+import { scheduleFiller, scheduleRange } from '../utils/schedules.js'
 import axios from '../utils/axios.js'
 import ableHours from '../utils/ableHours'
-import {hourString} from '../utils/formaters'
-import {toast} from 'react-toastify'
+import { hourString } from '../utils/formaters'
+import { toast } from 'react-toastify'
 import defaultCatchError from '../utils/returnTypes/defaultCatchError'
 import Load from '../components/Load'
-import {AuthContext} from '../context/AuthContext'
-import {useNavigate} from 'react-router-dom'
-import {getDayName, getMonthName} from '../utils/formaters'
+import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { getDayName, getMonthName } from '../utils/formaters'
 
 const NewSchedule = () => {
 	const navigate = useNavigate()
-	const {setAuth} = useContext(AuthContext)
+	const { setAuth } = useContext(AuthContext)
 
 	const [dates, setDates] = useState([])
 	const [hours, setHours] = useState([])
@@ -27,7 +27,7 @@ const NewSchedule = () => {
 	async function handleVerifyHour(id) {
 		try {
 			setLoading(true)
-			const {year, month, date, day} = dates.find((item) => item.id == id)
+			const { year, month, date, day } = dates.find((item) => item.id == id)
 			const newDate = new Date(year, month, date).toISOString()
 
 			setDate({
@@ -48,7 +48,7 @@ const NewSchedule = () => {
 			const busyDates = response.data.data.dates
 			let unable = []
 
-			for (let {date} of busyDates) {
+			for (let { date } of busyDates) {
 				const dataHora = new Date(date)
 				const hours = dataHora.getHours()
 				const min = dataHora.getMinutes()
@@ -60,7 +60,7 @@ const NewSchedule = () => {
 			setHours(newArray)
 			setSelectedHour('')
 		} catch (error) {
-			const {message, state, statusCode} = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
 			if (statusCode == 401) {
 				localStorage.clear()
 				setAuth(false)
@@ -88,14 +88,14 @@ const NewSchedule = () => {
 				h,
 				m,
 			).toISOString()
-			const {data} = await axios.post('/api/v1/schedule/create-schedule', {
+			const { data } = await axios.post('/api/v1/schedule/create-schedule', {
 				date: newDate,
 				frequency: frequency,
 			})
 			toast[data.state](data.message)
 			navigate('/schedules')
 		} catch (error) {
-			const {message, state, statusCode} = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
 			if (statusCode == 401) {
 				localStorage.clear()
 				setAuth(false)
@@ -109,7 +109,7 @@ const NewSchedule = () => {
 
 	useEffect(() => {
 		function getDates() {
-			const {minRange, maxRange} = scheduleRange(2)
+			const { minRange, maxRange } = scheduleRange(2)
 			const datesArray = scheduleFiller(minRange, maxRange)
 
 			return datesArray
@@ -144,7 +144,7 @@ const NewSchedule = () => {
 										<span>
 											<b>{'Dia ' + item.date}</b>
 										</span>
-										<span>{', ' + getDayName(item.day)}</span>
+										<span className={style.dayName}>{', ' + getDayName(item.day)}</span>
 									</div>
 								</div>
 							)
@@ -159,7 +159,7 @@ const NewSchedule = () => {
 										<span>
 											<b>{'Dia ' + item.date}</b>
 										</span>
-										<span>{', ' + getDayName(item.day)}</span>
+										<span className={style.dayName}>{', ' + getDayName(item.day)}</span>
 									</div>
 								</div>
 							)
@@ -190,7 +190,7 @@ const NewSchedule = () => {
 											setSelectedHour(e.target.dataset.hour)
 										}}
 										data-hour={item}
-										style={{backgroundColor: 'var(--color1)'}}
+										style={{ backgroundColor: 'var(--color1)' }}
 										key={i}
 									>
 										{item}{' '}
@@ -209,11 +209,13 @@ const NewSchedule = () => {
 							)}
 					</ul>
 					<div className={style.selectedHour}>
-						Horário: <span>{selectedHour}</span>
+						<span>Horário:</span> <b>{selectedHour}</b>
 					</div>
-					<form onSubmit={handleSubmit} className="defaultForm">
+					<form
+						onSubmit={handleSubmit}
+						className={`defaultForm ${style.minimalSize}`}>
 						<select
-							className="defaultInput"
+							className={`defaultInput ${style.minimalSize}`}
 							onChange={(e) => setFrequency(e.target.value)}
 						>
 							<option value="once">Uma vez</option>
@@ -221,7 +223,9 @@ const NewSchedule = () => {
 							<option value="biweekly">Quinzenal</option>
 							<option value="monthly">A cada 28 dias</option>
 						</select>
-						<button className="defaultButton">Agendar</button>
+						<button className={`defaultButton ${style.minimalSize}`}>Agendar</button>
+
+
 					</form>
 				</div>
 			)}

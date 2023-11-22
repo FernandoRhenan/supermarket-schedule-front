@@ -11,7 +11,22 @@
 	top: 0;
 }
 
-.icon {
+.profileIcon {
 	font-size: 28px;
 	cursor: pointer;
+}
+
+.menuIcon {
+	display: none;
+	font-size: 22px;
+	cursor: pointer;
+	transition: 500ms;
+}
+
+@media (max-width: 650px) {
+
+	.menuIcon {
+		display: inline-block;
+	}
+
 }

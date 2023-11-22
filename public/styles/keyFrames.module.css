@@ -45,8 +45,7 @@
 }
 
 @keyframes blossomBorderColor {
-	0% {
-	}
+	0% {}
 
 	100% {
 		border-bottom: solid 3px var(--color1);
@@ -58,13 +57,11 @@
 		border-bottom: solid 3px var(--color1);
 	}
 
-	100% {
-	}
+	100% {}
 }
 
 @keyframes blossomBorderColorActive {
-	0% {
-	}
+	0% {}
 
 	100% {
 		border-bottom: solid 3px red;
@@ -76,6 +73,5 @@
 		border-bottom: solid 3px red;
 	}
 
-	100% {
-	}
+	100% {}
 }

@@ -1,13 +1,16 @@
+@import url(../keyFrames.module.css);
+
 .mainContainer {
 	background-color: var(--color1-light);
 	min-width: 300px;
 	max-width: 300px;
 	height: calc(100vh - var(--header-height));
-	transition: all 0.5s ease-in;
+	transition: all 0.3s linear;
 	position: sticky;
 	top: var(--header-height);
 	left: 0;
 }
+
 
 .navList {
 	padding: 0;
@@ -41,4 +44,21 @@
 	transition: 250ms;
 	text-decoration: none;
 	border-right: solid 20px var(--color1-dark);
+}
+
+@media (max-width: 650px) {
+
+	.mainContainer {
+		background-color: var(--color1-light);
+		min-width: 250px;
+		max-width: 250px;
+		height: 100vh;
+		height: calc(100vh + var(--header-height));
+		transition: all 0.3s linear;
+		position: fixed;
+		top: var(--header-height);
+		left: 0;
+		bottom: 0;
+	}
+
 }

@@ -1,10 +1,10 @@
-import {useContext, useEffect, useState} from 'react'
+import { useContext, useEffect, useState } from 'react'
 import style from '../../public/styles/pages/company.module.css'
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import defaultCatchError from '../utils/returnTypes/defaultCatchError'
 import Load from '../components/Load'
-import {cleanStr, cnpjFormater, phoneFormater} from '../utils/formaters'
-import {FaExclamationTriangle} from 'react-icons/fa'
+import { cleanStr, cnpjFormater, phoneFormater } from '../utils/formaters'
+import { FaExclamationTriangle } from 'react-icons/fa'
 import axios from '../utils/axios'
 import {
 	validateAll,
@@ -15,11 +15,11 @@ import {
 	compareTwoValues,
 } from '../utils/validators/compareData'
 import Modal from '../components/Modal'
-import {AuthContext} from '../context/AuthContext'
-import {useNavigate} from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Company = () => {
-	const {setAuth} = useContext(AuthContext)
+	const { setAuth } = useContext(AuthContext)
 
 	const navigate = useNavigate()
 	const [name, setName] = useState('')
@@ -47,7 +47,7 @@ const Company = () => {
 			try {
 				const data = await axios.get('/api/v1/company/get-company')
 
-				const {cnpj, altPhone, corporateName, email, name, phone} =
+				const { cnpj, altPhone, corporateName, email, name, phone } =
 					data.data.data
 				setCorporateName(corporateName)
 				setName(name)
@@ -61,7 +61,7 @@ const Company = () => {
 				setNewPhone(phone)
 				setNewAltPhone(altPhone)
 			} catch (error) {
-				const {message, state} = defaultCatchError(error)
+				const { message, state } = defaultCatchError(error)
 
 				toast[state](message)
 			} finally {
@@ -74,8 +74,8 @@ const Company = () => {
 	async function handleEditCompany(e) {
 		e.preventDefault()
 
-		const newCleanPhone = cleanStr({data: newPhone, only: 'numbers'})
-		const newCleanAltPhone = cleanStr({data: newAltPhone, only: 'numbers'})
+		const newCleanPhone = cleanStr({ data: newPhone, only: 'numbers' })
+		const newCleanAltPhone = cleanStr({ data: newAltPhone, only: 'numbers' })
 
 		const altPhoneComparation = compareTwoValues({
 			value1: newCleanAltPhone,
@@ -85,8 +85,8 @@ const Company = () => {
 			value1: newCleanPhone,
 			value2: phone,
 		})
-		const emailComparation = compareTwoValues({value1: newEmail, value2: email})
-		const nameComparation = compareTwoValues({value1: newName, value2: name})
+		const emailComparation = compareTwoValues({ value1: newEmail, value2: email })
+		const nameComparation = compareTwoValues({ value1: newName, value2: name })
 
 		if (
 			!altPhoneComparation.error &&
@@ -97,7 +97,7 @@ const Company = () => {
 			return toast.warning('Para atulizar você precisa modificar algum campo')
 		}
 
-		const {message, error, state} = validateAll({
+		const { message, error, state } = validateAll({
 			altPhone: newCleanAltPhone,
 			phone: newCleanPhone,
 			email: newEmail,
@@ -119,7 +119,7 @@ const Company = () => {
 
 			toast[data.data.state](data.data.message)
 		} catch (error) {
-			const {message, state} = defaultCatchError(error)
+			const { message, state } = defaultCatchError(error)
 
 			toast[state](message)
 		} finally {
@@ -173,7 +173,7 @@ const Company = () => {
 			setConfirmNewPassword('')
 			setCurrentPassword('')
 		} catch (error) {
-			const {message, state, statusCode} = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
 			if (statusCode == 401) {
 				localStorage.clear()
 				setAuth(false)
@@ -193,7 +193,7 @@ const Company = () => {
 			setAuth(false)
 			navigate('/register')
 		} catch (error) {
-			const {message, state, statusCode} = defaultCatchError(error)
+			const { message, state, statusCode } = defaultCatchError(error)
 			if (statusCode == 401) {
 				localStorage.clear()
 				setAuth(false)
@@ -246,7 +246,7 @@ const Company = () => {
 							<input
 								value={newName}
 								type="text"
-								onChange={({target}) => setNewName(target.value)}
+								onChange={({ target }) => setNewName(target.value)}
 								className="defaultInput"
 								maxLength="26"
 							/>
@@ -256,7 +256,7 @@ const Company = () => {
 							<input
 								value={newEmail}
 								type="text"
-								onChange={({target}) => setNewEmail(target.value)}
+								onChange={({ target }) => setNewEmail(target.value)}
 								className="defaultInput"
 								maxLength="50"
 							/>
@@ -266,7 +266,7 @@ const Company = () => {
 							<input
 								value={phoneFormater(newPhone)}
 								type="text"
-								onChange={({target}) =>
+								onChange={({ target }) =>
 									setNewPhone(phoneFormater(target.value))
 								}
 								className="defaultInput"
@@ -278,7 +278,7 @@ const Company = () => {
 							<input
 								value={phoneFormater(newAltPhone)}
 								type="text"
-								onChange={({target}) =>
+								onChange={({ target }) =>
 									setNewAltPhone(phoneFormater(target.value))
 								}
 								className="defaultInput"
@@ -297,7 +297,7 @@ const Company = () => {
 							<input
 								value={currentPassword}
 								type="password"
-								onChange={({target}) => setCurrentPassword(target.value)}
+								onChange={({ target }) => setCurrentPassword(target.value)}
 								className="defaultInput"
 								maxLength="32"
 							/>
@@ -307,7 +307,7 @@ const Company = () => {
 							<input
 								value={newPassword}
 								type="password"
-								onChange={({target}) => setNewPassword(target.value)}
+								onChange={({ target }) => setNewPassword(target.value)}
 								className="defaultInput"
 								maxLength="32"
 							/>
@@ -317,7 +317,7 @@ const Company = () => {
 							<input
 								value={confirmNewPassword}
 								type="password"
-								onChange={({target}) => setConfirmNewPassword(target.value)}
+								onChange={({ target }) => setConfirmNewPassword(target.value)}
 								className="defaultInput"
 								maxLength="32"
 							/>

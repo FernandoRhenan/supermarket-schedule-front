@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import '../public/styles/app.css'
 
 import 'react-toastify/dist/ReactToastify.css'
@@ -24,6 +24,7 @@ import AdmCompanies from './pages/adm/AdmCompanies'
 function App() {
 	const { auth, isAdmin } = useContext(AuthContext)
 	// const navite = useNavigate()
+	const [isMenuActive, setIsMenuActive] = useState(true)
 
 	useEffect(() => {
 		axios.create({
@@ -33,12 +34,15 @@ function App() {
 		})
 	}, [])
 
+	function menuClick() {
+		setIsMenuActive(!isMenuActive)
+	}
+
 	return (
 		<div className="topScreen">
 			<BrowserRouter>
-				{auth && <Headerbar />}
 				<div className="mainScreen">
-					{auth && <Sidebar isAdmin={isAdmin} />}
+					{auth && <Sidebar isAdmin={isAdmin} activeMenu={isMenuActive} />}
 					<ToastContainer autoClose={3000} />
 
 					<Routes>
@@ -128,6 +132,8 @@ function App() {
 						/>
 					</Routes>
 				</div>
+				{auth && <Headerbar menuClick={menuClick} />}
+
 			</BrowserRouter>
 		</div>
 	)

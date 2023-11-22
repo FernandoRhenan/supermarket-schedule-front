@@ -2,9 +2,11 @@ import style from '../../public/styles/components/sidebar.module.css'
 import { NavLink } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
-const Sidebar = ({ isAdmin }) => {
+const Sidebar = ({ isAdmin, activeMenu }) => {
+
+
 	return (
-		<div className={style.mainContainer}>
+		<div style={activeMenu ? { left: '-260px' } : { left: '0px' }} className={style.mainContainer}>
 			<nav>
 				<ul className={style.navList}>
 					{isAdmin ? (
@@ -79,6 +81,7 @@ const Sidebar = ({ isAdmin }) => {
 				</ul>
 			</nav>
 		</div>
+
 	)
 }
 

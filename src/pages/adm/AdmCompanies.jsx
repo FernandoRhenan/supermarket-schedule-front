@@ -82,17 +82,18 @@ const AdmCompanies = () => {
 					{companies && companies.map((item) => (
 						<li key={item.id} className={style.companyBox}>
 							<div className={style.companyBoxData}>
-								<span>Nome: <b>{item.name}</b></span>
-								<span>Razão social: <b>{item.corporateName}</b></span>
-								<span>CNPJ: <b>{cnpjFormater(item.cnpj)}</b></span>
-								<span>E-mail: <b>{item.email}</b></span>
-								<span>Telefone: <b>{phoneFormater(item.phone)}</b></span>
-								<span>Telefone secundário: <b>{phoneFormater(item.altPhone)}</b></span>
-								<span>Situação da conta: {item.confirmedAccount ? <b className={style.active}>Confirmada</b> : <b className={style.desactive}>Não confirmada</b>}</span>
-								<span>Entrada em: <b>{ISODateToDate(item.createdAt) + " - " + ISODateToTime(hourString(item.createdAt))}</b></span>
-								<span>Atualizado em: <b>{ISODateToDate(item.createdAt) + " - " + ISODateToTime(hourString(item.updatedAt))}</b></span>
-								<span>Administradora: <b>{item.isAdmin ? 'Sim' : 'Não'}</b></span>
+								<span className={style.lineData}><span>Nome: </span><b>{item.name}</b></span>
+								<span className={style.lineData}><span>Razão social: </span> <b>{item.corporateName}</b></span>
+								<span className={style.lineData}><span>CNPJ: </span> <b>{cnpjFormater(item.cnpj)}</b></span>
+								<span className={style.lineData}><span>E-mail: </span> <b>{item.email}</b></span>
+								<span className={style.lineData}><span>Telefone: </span> <b>{phoneFormater(item.phone)}</b></span>
+								<span className={style.lineData}><span>Telefone secundário: </span> <b>{phoneFormater(item.altPhone)}</b></span>
+								<span className={style.lineData}><span>Situação da conta: </span> {item.confirmedAccount ? <b className={style.active}>Confirmada</b> : <b className={style.desactive}>Não confirmada</b>}</span>
+								<span className={style.lineData}><span>Entrada em: </span> <b>{ISODateToDate(item.createdAt) + " - " + ISODateToTime(hourString(item.createdAt))}</b></span>
+								<span className={style.lineData}><span>Atualizado em: </span> <b>{ISODateToDate(item.createdAt) + " - " + ISODateToTime(hourString(item.updatedAt))}</b></span>
+								<span className={style.lineData}><span>Administradora: </span> <b>{item.isAdmin ? 'Sim' : 'Não'}</b></span>
 							</div>
+
 						</li>
 					))}
 				</ul>

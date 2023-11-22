@@ -12,14 +12,14 @@
 .scheduleContainer ul {
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 	gap: 10px;
 }
 
 .scheduleBox {
 	border: solid 1px var(--medium-color);
 	background-color: var(--light-color);
-	min-height: 200px;
+	min-height: 215px;
 	box-shadow: 0 0 5px #d6d6d6;
 	border-radius: var(--border-radius1);
 	padding: 15px;
@@ -101,4 +101,22 @@
 	font-weight: bold;
 	padding: 5px;
 	border-radius: var(--border-radius1);
+}
+
+@media (max-width: 550px) {
+
+	.scheduleContainer ul {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+
+	.scheduleBox {
+		min-height: 235px;
+	}
+
+	.scheduleBoxData div {
+		flex-direction: column;
+		justify-content: center;
+		gap: 1px;
+		font-size: 1.1rem;
+	}
 }

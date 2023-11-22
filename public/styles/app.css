@@ -45,7 +45,7 @@ a:visited {
 font-family: 'Roboto', sans-serif; */
 .topScreen {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 }
 
 .mainScreen {
@@ -53,6 +53,12 @@ font-family: 'Roboto', sans-serif; */
 }
 
 :root {
+
+	--color1: #ffd000;
+	--color1-light: #ffd727;
+	--color1-dark: #e6bc00;
+	--color2: #446257;
+
 	--font-color: #333;
 	--header-height: 70px;
 	--background-color1: #f8f8f8;
@@ -60,10 +66,6 @@ font-family: 'Roboto', sans-serif; */
 	--medium-color: #aeaeae;
 	--light-color: #f7f7f7;
 	--semi-light-color: #e3e3e3;
-	--color1: #ffd000;
-	--color1-light: #ffd727;
-	--color1-dark: #e6bc00;
-	--color2: #446257;
 	--danger-color: #db3b3b;
 	--active-color: #06bb30;
 	--danger-color-hover: #d10e0e;

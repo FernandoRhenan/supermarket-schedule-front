@@ -13,7 +13,7 @@
 .companiesContainer ul {
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
 	gap: 10px;
 }
 
@@ -58,4 +58,21 @@
 	font-weight: bold;
 	padding: 4px 10px;
 	border-radius: var(--border-radius1);
+}
+
+@media (max-width: 500px) {
+
+	.companiesContainer ul {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		gap: 10px;
+	}
+
+	.lineData {
+		display: flex;
+		flex-direction: column;
+		word-wrap: break-word;
+	}
+
 }
