@@ -1,8 +1,13 @@
-# React + Vite
+Interface de usuário de uma aplicação de agendamentos para entregadores em supermercados!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Frontend
+Certifique-se de ter o nodejs.
 
-Currently, two official plugins are available:
+O primeiro passo será clonar o repositório para sua maquina.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Então na raiz do projeto, digite no terminal: npm install, para baixar todas as dependências e pacotes.
+
+Feito isso, o projeto estará pronto para iniciar, digitando no terminal: npm run dev. Isso será responsável por abrir uma porta para acessar em seu navegador.
+
+### Backend
+O projeto da interface de usuário está disponível em: https://github.com/FernandoRhenan/supermarket-schedule-front
