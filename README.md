@@ -17,4 +17,4 @@ Então na raiz do projeto, digite no terminal: `npm install`, para baixar todas 
 Feito isso, o projeto estará pronto para iniciar, digitando no terminal: `npm run dev`. Isso será responsável por abrir uma porta para acessar em seu navegador.
 
 ### Backend
-O projeto da interface de usuário está disponível em: https://github.com/FernandoRhenan/supermarket-scheduling-api
+O projeto da API está disponível em: https://github.com/FernandoRhenan/supermarket-scheduling-api
